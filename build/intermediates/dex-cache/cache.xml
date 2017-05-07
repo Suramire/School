@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="D:\Transfer\Documents\AndroidProjects\School\app\libs\AMap.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="255b84577f222699367fdeeb3080787423b4bd64">
+        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\AMap_9785e130428a451090c971facbce3ff5b8c7c24f.jar" />
+    </item>
+
+</items>
