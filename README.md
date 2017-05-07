@@ -2,7 +2,7 @@
 安卓期末项目
 ***
 ## 涉及知识点
-* mageView
+* ImageView
 * ListView
 * ImageSwitcher
 * 地图的使用(定位以及路线查询)
