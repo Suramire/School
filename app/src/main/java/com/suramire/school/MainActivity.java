@@ -8,6 +8,7 @@ import android.view.View;
 import com.suramire.school.chuxingzhinan.ChuxingzhinanMain;
 import com.suramire.school.haomabaishitong.HaomabaishitongMain;
 import com.suramire.school.xiaoyuanshenghuo.XiaoyuanshenghuoMain;
+import com.suramire.school.youwannanchang.YouwannanchangMain;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button4:
                 Intent intent4 = new Intent(this,HaomabaishitongMain.class);
                 startActivity(intent4);
+                break;
+            case R.id.button3:
+                Intent intent3 = new Intent(this,YouwannanchangMain.class);
+                startActivity(intent3);
                 break;
             default:
                 break;

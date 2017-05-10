@@ -97,6 +97,11 @@
         <activity android:name=".haomabaishitong.NewNumber"
             android:label="@string/newnum_title"
             ></activity>
+        <activity android:name=".youwannanchang.YouwannanchangMain"
+            android:label="@string/youwannanchang"
+            />
+        <activity android:name=".youwannanchang.Jingdianjieshao"
+            android:label="@string/jingdianjieshao"/>
     </application>
 
 </manifest>
