@@ -23,7 +23,9 @@ public class Xinshengzhinan1 extends AppCompatActivity {
         setContentView(R.layout.xinshengzhinan1);
         textView = (TextView) findViewById(R.id.textView1);
         intent = getIntent();
-        textView.setText(intent.getStringExtra("text"));
+        int index = intent.getIntExtra("text",0);
+        String text = getResources().getTextArray(R.array.guids)[index].toString();
+        textView.setText(text);
         setTitle(intent.getStringExtra("title"));
     }
     public void click1(View view) {

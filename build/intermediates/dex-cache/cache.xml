@@ -2,42 +2,6 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\support-annotations-25.2.0_ac9a39bb4e24b8bb35442e401377bcbf17dabd4c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\f13cdee1f9253d38b8e6c6f545cda732aea80514\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_adb4c53fc7aae03e16465a5377620ffc74e19f64.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\8abba3911b7a3b3ec0167cdc15783113183c5845\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_29bb25c568fad451e27ddd76f8ae6198cd761c68.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\9a22eee65f6bcaefc0cef77fe4ca954266ca002e\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_d4f45aa0cf09c1fa52a551664b6a3b0b3fa650f1.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
@@ -65,85 +29,13 @@
         <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\AMap_9785e130428a451090c971facbce3ff5b8c7c24f.jar" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\b90408405c0e9c6b7dfd4fcdaeb837aad5c10efc\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_65cd6c3831e5b06ec299f29e539372e58349f5f0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\22f32c885008ed7427baa73c8a4a07d8a395b575\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_67516d59f7a20aac37fe9e15a5583ced97060988.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\ca84fb379bc552b035e484e10fa13c6a90d522ca\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_77c3bcf926a6d30ff287989566863cf4bdbb18be.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\b168166b6fa7fe45b5426e4736ee6d10259873e3\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_b1181b3ab4fcf023fed439237ee4af256585d434.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\f7ef7d34b6bb1270771ffd156043552880a84089\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_2b4cb34207224ed5826df90337699a158a2ad6e4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\27b4e2ec113e3debb7ea97abe271b1b92e282e28\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_debc6d81145796187bc581f72f98297fdba865cc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\d576a0f9f9d5b3209f5668a4b23fbbc18d6458db\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_60c4a0e0618091686176aaae6795aefba902ee5a.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="2befffc155d5d8021c2731d9ea3e118dd868043d">
+        sha1="ee61f8ed56fa395e9df53624326ba566fac3d5ee">
         <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_785653d0d44f5602b775b00e9ad33dea51f72dfc\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_8276991ff157f6c7c0e79cfa71caf16f42cfd9a2.jar" />
     </item>
 
 </items>

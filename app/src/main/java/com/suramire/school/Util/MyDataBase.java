@@ -4,34 +4,66 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.suramire.school.R;
 import com.suramire.school.haomabaishitong.Child;
 
 /**
  * Created by Suramire on 2017/5/2.
  */
 
-public class MyDataBase {
-    SQLiteDatabase db;
-    public MyDataBase(Context context) {
-        db = context.openOrCreateDatabase("number.db",Context.MODE_PRIVATE,null);
-        init();
+public class MyDataBase extends SQLiteOpenHelper {
+    private static final String TAG = "MyDataBase";
+    SQLiteDatabase mydb;
+    Context context;
+    public CharSequence[] getGroupsname() {
+        return groupsname;
     }
 
-    /**
-     * 初始化 创建表(如果不存在)
-     */
-    public void init(){
-        db.execSQL("create table if not exists num(_id integer primary key autoincrement,name varchar,number varchar,groupid integer,keyword varchar)");
-        db.execSQL("create table if not exists groups(_id integer primary key autoincrement,groupname varchar)");
+    public void setGroupsname(CharSequence[] groupsname) {
+        this.groupsname = groupsname;
     }
+
+    CharSequence[] groupsname;
+
+    public MyDataBase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+        this.context = context;
+        mydb = getWritableDatabase();
+    }
+
+    //    public MyDataBase(Context context,CharSequence[] groupsname) {
+//        db = context.openOrCreateDatabase("number.db",Context.MODE_PRIVATE,null);
+//        this.groupsname = groupsname;
+//        init();
+//    }
+
+//    /**
+//     * 初始化 创建表(如果不存在)并将分组名称写入数据库
+//     */
+//    public void init(){
+//        db.execSQL("create table if not exists num(_id integer primary key autoincrement,name varchar,number varchar,groupid integer,keyword varchar)");
+//        db.execSQL("create table if not exists groups(_id integer primary key autoincrement,groupname varchar)");
+//
+//        //将分组名提前写入数据库
+//        ContentValues values =new ContentValues();
+//        for(CharSequence name :groupsname){
+//            values.put("groupname",name.toString());
+//            db.insert("groups",null,values);
+//            Log.e(TAG, "init: "+ name.toString());
+//            values.clear();
+//        }
+//
+//    }
 
     /**
      * 查询所有数据
      * @return
      */
     public Cursor selectAll(){
-        return db.query("num", null, null, null, null, null, null);
+        return mydb.query("num", null, null, null, null, null, null);
     }
 
     /**
@@ -39,7 +71,16 @@ public class MyDataBase {
      * @return
      */
     public Cursor selectByAnything(String text){
-        return db.query("num",null,"name like ? or number like ? ",new String[]{"%"+text+"%","%"+text+"%"},null,null,null);
+        return mydb.query("num",null,"name like ? or number like ? ",new String[]{"%"+text+"%","%"+text+"%"},null,null,null);
+    }
+
+    /**
+     * 根据分组的下标索引来获取数据
+     * @param index
+     * @return
+     */
+    public Cursor selectByGroup(int index){
+        return  mydb.query("num",null,"groupid = "+index,null,null,null,null);
     }
 
     /**
@@ -52,15 +93,38 @@ public class MyDataBase {
         values.put("name",child.getName());
         values.put("number",child.getNumber());
         values.put("groupid",child.getGroupindex());
-        return db.insert("num",null,values);
+        return mydb.insert("num",null,values);
     }
 
     /**
      * 关闭数据库
      */
     public void close(){
-        if(db.isOpen())
-            db.close();
+        if(mydb.isOpen())
+            mydb.close();
     }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table if not exists num(_id integer primary key autoincrement,name varchar,number varchar,groupid integer,keyword varchar)");
+        db.execSQL("create table if not exists groups(_id integer primary key autoincrement,groupname varchar)");
+
+        //将分组名提前写入数据库
+        ContentValues values =new ContentValues();
+        //获取分组名
+        groupsname = context.getResources().getTextArray(R.array.groups);
+        for(CharSequence name :groupsname){
+            values.put("groupname",name.toString());
+            db.insert("groups",null,values);
+            Log.e(TAG, "init: "+ name.toString());
+            values.clear();
+        }
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
 
 }

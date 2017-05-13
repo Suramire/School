@@ -7,13 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 
 /**
  * Created by Suramire on 2017/5/10.
  */
 
-public class Jingdianjieshao extends AppCompatActivity {
+public class Jingdianjieshao extends MyActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

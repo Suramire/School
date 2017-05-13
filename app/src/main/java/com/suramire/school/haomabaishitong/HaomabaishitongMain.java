@@ -33,6 +33,9 @@ public class HaomabaishitongMain extends MyActivity {
     ArrayList<Child> children = new ArrayList<Child>();
     ExpandableListView expandableListView;
     MyDataBase myDataBase;
+    private CharSequence[] groups;
+    private Child child;
+    private int count;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class HaomabaishitongMain extends MyActivity {
         expandableListView = (ExpandableListView) findViewById(R.id.expandedList);
         // TODO: 2017/5/1 从数据库中读取号码信息并显示
         //// TODO: 2017/5/13 无数据时显示对应信息
-
+        groups = getResources().getTextArray(R.array.groups);
         getData();
         setView();
 
@@ -49,7 +52,7 @@ public class HaomabaishitongMain extends MyActivity {
 
     @Override
     protected void onStart() {
-        myDataBase = new MyDataBase(getApplicationContext());
+        myDataBase = new MyDataBase(this, "number.db", null, 1);
         super.onStart();
 
     }
@@ -67,30 +70,50 @@ public class HaomabaishitongMain extends MyActivity {
 
     private void getData() {
 
-        myDataBase = new MyDataBase(this);
-        Cursor cursor = myDataBase.selectAll();
-        Log.i(TAG, "getData: "+cursor.getCount());
-            if (cursor.getCount()!=0) {
-                while (cursor.moveToNext()) {
-                    String name = cursor.getString(cursor.getColumnIndex("name"));
-                    String number = cursor.getString(cursor.getColumnIndex("number"));
-                    Child child = new Child(name, number);
+//        myDataBase = new MyDataBase(this,groups);
+        myDataBase = new MyDataBase(this, "number.db", null, 1);
+        //联系人总数 >0 表示列表不为空
+        count = 0;
+        //从stringarray中读取分组名字
+        int i = 0;
+        children.clear();
+        for (CharSequence groupname : groups) {
+            // TODO: 2017/5/13 获取每个分组下的信息记录
+            Cursor cursor1 = myDataBase.selectByGroup(i);
+            if (cursor1.getCount() != 0) {
+                count++;
+                //该分组下有数据，添加带数据的分组
+                while (cursor1.moveToNext()) {
+                    String name = cursor1.getString(cursor1.getColumnIndex("name"));
+                    Log.e(TAG, "getData: name" + name);
+                    String number = cursor1.getString(cursor1.getColumnIndex("number"));
+                    Log.e(TAG, "getData: number" + number);
+                    child = new Child(name, number);
                     children.add(child);
                 }
-                parents.add(new Parent(children, "默认分组"));
-                parents.add(new Parent(children, "测试分组"));
-                cursor.close();
-            }else{
-                Toast.makeText(this, "暂无号码数据，请先添加号码", Toast.LENGTH_SHORT).show();
+                cursor1.close();
+                parents.add(new Parent(children, groupname.toString()));
+                children.clear();
+            } else {
+                //添加空分组
+
+                parents.add(new Parent(groupname.toString()));
             }
+            i++;
+        }
+        if(count==0){
+            Toast.makeText(this, "暂无联系人信息，点击右上角添加。", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
      * 显示结果集内的数据
+     *
      * @param cursor 给定的结果集
      */
+    // TODO: 2017/5/13 对搜索到的结果进行分组
     private void getData(Cursor cursor) {
-        if (cursor.getCount()!=0) {
+        if (cursor.getCount() != 0) {
             children.clear();
             parents.clear();
             while (cursor.moveToNext()) {
@@ -99,16 +122,17 @@ public class HaomabaishitongMain extends MyActivity {
                 Child child = new Child(name, number);
                 children.add(child);
             }
-            parents.add(new Parent(children, "默认分组"));
+            parents.add(new Parent(children, "搜索结果"));
             cursor.close();
-        }else{
-            Toast.makeText(this, "暂无号码数据，请先添加号码", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "没有符合要求的结果", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
      * 将数据库中的数据装入适配器，并显示数据
      */
+
     private void setView() {
 
         BaseExpandableListAdapter adapter = new BaseExpandableListAdapter() {
@@ -150,7 +174,7 @@ public class HaomabaishitongMain extends MyActivity {
             @Override
             public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
                 //// TODO: 2017/5/1 用viewholder进行优化 
-                view  = LayoutInflater.from(HaomabaishitongMain.this).inflate(R.layout.haomaparent,viewGroup,false);
+                view = LayoutInflater.from(HaomabaishitongMain.this).inflate(R.layout.haomaparent, viewGroup, false);
                 TextView parentName = (TextView) view.findViewById(R.id.textView);
                 parentName.setText(parents.get(i).getParentName());
                 return view;
@@ -159,7 +183,7 @@ public class HaomabaishitongMain extends MyActivity {
             @Override
             public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
                 //// TODO: 2017/5/1 用viewholder进行优化
-                view  = LayoutInflater.from(HaomabaishitongMain.this).inflate(R.layout.haomachild,viewGroup,false);
+                view = LayoutInflater.from(HaomabaishitongMain.this).inflate(R.layout.haomachild, viewGroup, false);
                 TextView childName = (TextView) view.findViewById(R.id.textView5);
                 TextView childNumber = (TextView) view.findViewById(R.id.textView6);
 
@@ -175,9 +199,17 @@ public class HaomabaishitongMain extends MyActivity {
         };
         expandableListView.setAdapter(adapter);
         //展开列表
-        for(int i=0;i<parents.size();i++) {
+        for (int i = 0; i < parents.size(); i++) {
             expandableListView.expandGroup(i);
         }
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Log.e(TAG, "onChildClick: "+groupPosition +" / "+childPosition +" / " +id);
+                return false;
+            }
+        });
+
 
     }
 
@@ -209,12 +241,13 @@ public class HaomabaishitongMain extends MyActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_add:
                 Intent intent = new Intent(this, NewNumber.class);
                 startActivity(intent);
                 break;
-            default:break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

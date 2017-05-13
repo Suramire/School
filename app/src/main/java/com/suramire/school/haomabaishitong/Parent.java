@@ -15,6 +15,11 @@ public class Parent {
         this.parentName = parentName;
     }
 
+    public Parent(String parentName) {
+        this.childArrayList = new ArrayList<>();
+        this.parentName = parentName;
+    }
+
     public ArrayList<Child> getChildArrayList() {
         return childArrayList;
     }
