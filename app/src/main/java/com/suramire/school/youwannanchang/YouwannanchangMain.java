@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import java.util.Objects;
  * Created by Suramire on 2017/5/10.
  */
 
-public class YouwannanchangMain extends AppCompatActivity {
+public class YouwannanchangMain extends MyActivity {
 
     private ListView listView;
     private ArrayList<Item> items;
@@ -97,5 +99,6 @@ public class YouwannanchangMain extends AppCompatActivity {
         intent1.putExtra("image",images[i]);//对应的图片
         startActivity(intent1);
     }
+
 
 }

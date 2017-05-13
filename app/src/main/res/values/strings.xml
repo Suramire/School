@@ -33,6 +33,10 @@
         <item>麦庐校区</item>
         <item>枫林校区</item>
     </string-array>
+    <string-array name="groups">
+        <item>教师</item>
+        <item>学生</item>
+    </string-array>
     <string-array name="texts">
         <item>  它已不再是一个单纯的地域名称，更代表了一种简单无忧、轻松慵懒的生活方式，一种宠辱不惊，看庭前花开花落;去留无意，望天上云卷云舒的闲适意境。如果旅行是为了摆脱生活的桎梏，普罗旺斯会让你忘掉一切。</item>
         <item>  布拉格是保存最完整的中世纪城市之一。它一定是任何旅游名单上的必去之地。不要错过夜晚的城堡美景。城堡在灯光的映衬之下显得尤为壮观。</item>

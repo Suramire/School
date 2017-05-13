@@ -69,16 +69,15 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.19"
             android:text="@string/newnum_sort" />
 
-        <EditText
-            android:id="@+id/editText3"
+        <Spinner
+            android:id="@+id/spinner2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:entries="@array/groups" />
 
     </LinearLayout>
 

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="120dp"
         android:gravity="right"
         android:orientation="vertical" >
 
@@ -38,15 +38,6 @@
             android:background="@null"
             android:onClick="click"
             android:text="关键点查询"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:onClick="click"
-            android:text="返回"
             android:textColor="@color/black" />
 
     </LinearLayout>

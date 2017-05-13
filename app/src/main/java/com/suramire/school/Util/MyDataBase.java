@@ -22,8 +22,8 @@ public class MyDataBase {
      * 初始化 创建表(如果不存在)
      */
     public void init(){
-        db.execSQL("create table if not exists num(_id integer primary key autoincrement,name varchar,number varchar,sortid integer,keyword varchar)");
-        db.execSQL("create table if not exists sorts(_id integer primary key autoincrement,sort varchar)");
+        db.execSQL("create table if not exists num(_id integer primary key autoincrement,name varchar,number varchar,groupid integer,keyword varchar)");
+        db.execSQL("create table if not exists groups(_id integer primary key autoincrement,groupname varchar)");
     }
 
     /**
@@ -43,7 +43,7 @@ public class MyDataBase {
     }
 
     /**
-     * 插入数据
+     * 插入数据（姓名电话分组）
      * @param child
      * @return 插入位置
      */
@@ -51,6 +51,7 @@ public class MyDataBase {
         ContentValues values = new ContentValues();
         values.put("name",child.getName());
         values.put("number",child.getNumber());
+        values.put("groupid",child.getGroupindex());
         return db.insert("num",null,values);
     }
 

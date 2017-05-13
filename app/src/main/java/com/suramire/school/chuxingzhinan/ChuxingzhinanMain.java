@@ -3,15 +3,17 @@ package com.suramire.school.chuxingzhinan;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 
 /**
  * Created by Suramire on 2017/5/1.
  */
 
-public class ChuxingzhinanMain extends AppCompatActivity {
+public class ChuxingzhinanMain extends MyActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub

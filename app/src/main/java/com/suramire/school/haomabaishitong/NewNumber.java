@@ -3,8 +3,10 @@ package com.suramire.school.haomabaishitong;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.suramire.school.R;
@@ -15,9 +17,10 @@ import com.suramire.school.Util.MyDataBase;
  */
 
 public class NewNumber extends AppCompatActivity {
-    private EditText editText;
-    private EditText editText2;
-    private EditText editText3;
+    private static final String TAG = "SCHOOL";
+    private EditText editText;//姓名
+    private EditText editText2;//电话
+    private Spinner spinner;//分组
     private EditText editText4;
 
     @Override
@@ -26,7 +29,7 @@ public class NewNumber extends AppCompatActivity {
         setContentView(R.layout.newnumber);
         editText = (EditText) findViewById(R.id.editText);
         editText2 = (EditText) findViewById(R.id.editText2);
-        editText3 = (EditText) findViewById(R.id.editText3);
+        spinner = (Spinner) findViewById(R.id.spinner2);
         editText4 = (EditText) findViewById(R.id.editText4);
     }
     public void click(View view){
@@ -48,7 +51,6 @@ public class NewNumber extends AppCompatActivity {
     private void reset() {
         editText.setText("");
         editText2.setText("");
-        editText3.setText("");
         editText4.setText("");
     }
 
@@ -57,7 +59,10 @@ public class NewNumber extends AppCompatActivity {
      */
     private void sumbit() {
         MyDataBase myDataBase = new MyDataBase(this);
-        long index =  myDataBase.insert(new Child(editText.getText().toString().trim(),editText2.getText().toString().trim()));
+        Child child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim());
+        long index =  myDataBase.insert(child);
         Toast.makeText(this,"增加第"+index+"条数据",Toast.LENGTH_SHORT).show();
+        //// TODO: 2017/5/13  添加号码后返回主界面 ，主界面进行刷新
+        Log.i(TAG, "sumbit: "+spinner.getSelectedItemPosition());
     }
 }

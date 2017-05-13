@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +15,9 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.support.v7.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 import com.suramire.school.Util.MyDataBase;
 
@@ -24,7 +27,8 @@ import java.util.ArrayList;
  * Created by Suramire on 2017/5/1.
  */
 
-public class HaomabaishitongMain extends AppCompatActivity {
+public class HaomabaishitongMain extends MyActivity {
+    private static final String TAG = "SCHOOL";
     ArrayList<Parent> parents = new ArrayList<Parent>();
     ArrayList<Child> children = new ArrayList<Child>();
     ExpandableListView expandableListView;
@@ -36,6 +40,8 @@ public class HaomabaishitongMain extends AppCompatActivity {
         setContentView(R.layout.haomabaishitong_main);
         expandableListView = (ExpandableListView) findViewById(R.id.expandedList);
         // TODO: 2017/5/1 从数据库中读取号码信息并显示
+        //// TODO: 2017/5/13 无数据时显示对应信息
+
         getData();
         setView();
 
@@ -63,7 +69,8 @@ public class HaomabaishitongMain extends AppCompatActivity {
 
         myDataBase = new MyDataBase(this);
         Cursor cursor = myDataBase.selectAll();
-            if (cursor != null) {
+        Log.i(TAG, "getData: "+cursor.getCount());
+            if (cursor.getCount()!=0) {
                 while (cursor.moveToNext()) {
                     String name = cursor.getString(cursor.getColumnIndex("name"));
                     String number = cursor.getString(cursor.getColumnIndex("number"));
@@ -71,7 +78,10 @@ public class HaomabaishitongMain extends AppCompatActivity {
                     children.add(child);
                 }
                 parents.add(new Parent(children, "默认分组"));
+                parents.add(new Parent(children, "测试分组"));
                 cursor.close();
+            }else{
+                Toast.makeText(this, "暂无号码数据，请先添加号码", Toast.LENGTH_SHORT).show();
             }
     }
 
@@ -80,7 +90,7 @@ public class HaomabaishitongMain extends AppCompatActivity {
      * @param cursor 给定的结果集
      */
     private void getData(Cursor cursor) {
-        if (cursor != null) {
+        if (cursor.getCount()!=0) {
             children.clear();
             parents.clear();
             while (cursor.moveToNext()) {
@@ -91,6 +101,8 @@ public class HaomabaishitongMain extends AppCompatActivity {
             }
             parents.add(new Parent(children, "默认分组"));
             cursor.close();
+        }else{
+            Toast.makeText(this, "暂无号码数据，请先添加号码", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -174,6 +186,8 @@ public class HaomabaishitongMain extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.haoma_menu, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search2).getActionView();
+        //设置提示文字
+        searchView.setQueryHint("输入姓名或电话号码进行搜索");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
