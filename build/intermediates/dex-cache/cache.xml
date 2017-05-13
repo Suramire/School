@@ -2,13 +2,31 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_106a7a8285e854fe8a5b236c405cbda3ec9d1c14\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\Transfer\Documents\AndroidProjects\School\app\libs\AMap.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.3"
         sha1="255b84577f222699367fdeeb3080787423b4bd64">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\AMap_9785e130428a451090c971facbce3ff5b8c7c24f.jar" />
+        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\transforms\dex\debug\folders\1000\2\AMap_9785e130428a451090c971facbce3ff5b8c7c24f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2befffc155d5d8021c2731d9ea3e118dd868043d">
+        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_785653d0d44f5602b775b00e9ad33dea51f72dfc\classes.dex" />
     </item>
 
 </items>

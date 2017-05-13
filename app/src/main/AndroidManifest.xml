@@ -31,7 +31,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="92bbd2244cc0fc72309ed55c432a35f0"/>
+            android:value="7b4d1075c8a23b7314616e78846f611c"/>
         <!-- 添加用于定位的服务 -->
         <service android:name="com.amap.api.location.APSService"></service>
         <activity android:name=".MainActivity"
