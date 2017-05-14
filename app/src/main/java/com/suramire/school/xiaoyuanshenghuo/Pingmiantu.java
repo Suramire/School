@@ -8,13 +8,14 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 
 /**
  * Created by Suramire on 2017/5/1.
  */
 
-public class Pingmiantu extends AppCompatActivity {
+public class Pingmiantu extends MyActivity {
     int[] images  = {R.drawable.jiaotong,R.drawable.jiaoqiaoxiaoqu,R.drawable.mailuxiaoqu,R.drawable.fenglinxiaoqu};
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

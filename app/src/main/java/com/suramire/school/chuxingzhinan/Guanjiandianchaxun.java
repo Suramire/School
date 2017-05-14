@@ -13,6 +13,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.io.IOException;
  * Created by Suramire on 2017/5/1.
  */
 
-public class Guanjiandianchaxun extends AppCompatActivity {
+public class Guanjiandianchaxun extends MyActivity {
     private String keyString = "10a889d0c8e4ef5453561e7abe046c96";
     private double latitude = 0.0;//当前纬度
     private double longtitude = 0.0;//当前经度
@@ -57,7 +58,6 @@ public class Guanjiandianchaxun extends AppCompatActivity {
     private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guanjiandianchaxun);
         webView = (WebView) findViewById(R.id.webView1);
@@ -100,7 +100,6 @@ public class Guanjiandianchaxun extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        // TODO Auto-generated method stub
                         //先对要搜索的字符串进行url编码
                         try {
                             String query1 = java.net.URLEncoder.encode(query, "UTF-8");
@@ -118,7 +117,6 @@ public class Guanjiandianchaxun extends AppCompatActivity {
                         }
                         catch (IOException e) {
                             Log.e("onQueryTextSubmit", "IOException");
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
                     }
@@ -129,7 +127,6 @@ public class Guanjiandianchaxun extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // TODO Auto-generated method stub
                 return false;
             }
         });

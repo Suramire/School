@@ -17,7 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            android:contentDescription=""
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -32,7 +34,8 @@
             android:layout_marginEnd="50dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/xuexiaoshenghuo"
-            android:onClick="click1" />
+            android:onClick="click1"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/button2"
@@ -41,7 +44,8 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="50dp"
             android:background="@drawable/chuxingzhinan"
-            android:onClick="click1" />
+            android:onClick="click1"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 
@@ -55,7 +59,8 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/title" />
+            android:src="@drawable/title"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -71,7 +76,8 @@
             android:layout_marginEnd="50dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/youwannanchang"
-            android:onClick="click1" />
+            android:onClick="click1"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/button4"
@@ -80,7 +86,8 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="50dp"
             android:background="@drawable/haomabaishitong"
-            android:onClick="click1" />
+            android:onClick="click1"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 

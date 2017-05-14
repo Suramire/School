@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
@@ -32,7 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
 
@@ -55,7 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="phone" />
+            android:inputType="phone"
+            tools:ignore="LabelFor" />
 
     </LinearLayout>
 
@@ -100,7 +103,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
     <LinearLayout
@@ -114,7 +118,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="click"
-            android:text="@string/newnum_submit" />
+            android:text="@string/newnum_submit"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/button"
@@ -122,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="click"
-            android:text="@string/newnum_reset" />
+            android:text="@string/newnum_reset"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 </LinearLayout>

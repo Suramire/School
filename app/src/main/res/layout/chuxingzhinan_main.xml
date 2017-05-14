@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/chuxingxinxi"
@@ -11,7 +12,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="120dp"
         android:gravity="right"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        tools:ignore="RtlHardcoded,UselessParent">
 
         <Button
             android:id="@+id/button2"
@@ -19,8 +21,9 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:onClick="click"
-            android:text="线路查询"
-            android:textColor="@color/black" />
+            android:text="@string/xianluchaxun"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/button1"
@@ -28,8 +31,9 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:onClick="click"
-            android:text="我的位置"
-            android:textColor="@color/black" />
+            android:text="@string/wodeweizhi"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/button3"
@@ -37,8 +41,9 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:onClick="click"
-            android:text="关键点查询"
-            android:textColor="@color/black" />
+            android:text="@string/guanjiandianchaxun"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

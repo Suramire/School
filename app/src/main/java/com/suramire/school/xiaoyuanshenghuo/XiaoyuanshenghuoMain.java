@@ -14,7 +14,6 @@ import com.suramire.school.R;
 public class XiaoyuanshenghuoMain extends MyActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xiaoyuanshenghuo_main);
     }

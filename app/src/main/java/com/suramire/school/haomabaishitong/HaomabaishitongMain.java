@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,106 +36,16 @@ public class HaomabaishitongMain extends MyActivity {
     private CharSequence[] groups;
     private Child child;
     private int count;
+    private BaseExpandableListAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.haomabaishitong_main);
         expandableListView = (ExpandableListView) findViewById(R.id.expandedList);
-        // TODO: 2017/5/1 从数据库中读取号码信息并显示
-        //// TODO: 2017/5/13 无数据时显示对应信息
         groups = getResources().getTextArray(R.array.groups);
-        getData();
-        setView();
 
-    }
-
-    @Override
-    protected void onStart() {
-        myDataBase = new MyDataBase(this, "number.db", null, 1);
-        super.onStart();
-
-    }
-
-    @Override
-    protected void onStop() {
-        myDataBase.close();
-        super.onStop();
-
-    }
-
-    /**
-     * 从数据库获取数据
-     */
-
-    private void getData() {
-
-//        myDataBase = new MyDataBase(this,groups);
-        myDataBase = new MyDataBase(this, "number.db", null, 1);
-        //联系人总数 >0 表示列表不为空
-        count = 0;
-        //从stringarray中读取分组名字
-        int i = 0;
-        children.clear();
-        for (CharSequence groupname : groups) {
-            // TODO: 2017/5/13 获取每个分组下的信息记录
-            Cursor cursor1 = myDataBase.selectByGroup(i);
-            if (cursor1.getCount() != 0) {
-                count++;
-                //该分组下有数据，添加带数据的分组
-                while (cursor1.moveToNext()) {
-                    String name = cursor1.getString(cursor1.getColumnIndex("name"));
-                    Log.e(TAG, "getData: name" + name);
-                    String number = cursor1.getString(cursor1.getColumnIndex("number"));
-                    Log.e(TAG, "getData: number" + number);
-                    child = new Child(name, number);
-                    children.add(child);
-                }
-                cursor1.close();
-                parents.add(new Parent(children, groupname.toString()));
-                children.clear();
-            } else {
-                //添加空分组
-
-                parents.add(new Parent(groupname.toString()));
-            }
-            i++;
-        }
-        if(count==0){
-            Toast.makeText(this, "暂无联系人信息，点击右上角添加。", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /**
-     * 显示结果集内的数据
-     *
-     * @param cursor 给定的结果集
-     */
-    // TODO: 2017/5/13 对搜索到的结果进行分组
-    private void getData(Cursor cursor) {
-        if (cursor.getCount() != 0) {
-            children.clear();
-            parents.clear();
-            while (cursor.moveToNext()) {
-                String name = cursor.getString(cursor.getColumnIndex("name"));
-                String number = cursor.getString(cursor.getColumnIndex("number"));
-                Child child = new Child(name, number);
-                children.add(child);
-            }
-            parents.add(new Parent(children, "搜索结果"));
-            cursor.close();
-        } else {
-            Toast.makeText(this, "没有符合要求的结果", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /**
-     * 将数据库中的数据装入适配器，并显示数据
-     */
-
-    private void setView() {
-
-        BaseExpandableListAdapter adapter = new BaseExpandableListAdapter() {
+        adapter = new BaseExpandableListAdapter() {
             @Override
             public int getGroupCount() {
                 return parents.size();
@@ -173,7 +83,6 @@ public class HaomabaishitongMain extends MyActivity {
 
             @Override
             public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-                //// TODO: 2017/5/1 用viewholder进行优化 
                 view = LayoutInflater.from(HaomabaishitongMain.this).inflate(R.layout.haomaparent, viewGroup, false);
                 TextView parentName = (TextView) view.findViewById(R.id.textView);
                 parentName.setText(parents.get(i).getParentName());
@@ -182,13 +91,13 @@ public class HaomabaishitongMain extends MyActivity {
 
             @Override
             public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-                //// TODO: 2017/5/1 用viewholder进行优化
                 view = LayoutInflater.from(HaomabaishitongMain.this).inflate(R.layout.haomachild, viewGroup, false);
                 TextView childName = (TextView) view.findViewById(R.id.textView5);
                 TextView childNumber = (TextView) view.findViewById(R.id.textView6);
-
+                TextView childKeyword = (TextView) view.findViewById(R.id.textView9);
                 childName.setText(parents.get(i).getChildArrayList().get(i1).getName());
                 childNumber.setText(parents.get(i).getChildArrayList().get(i1).getNumber());
+                childKeyword.setText(parents.get(i).getChildArrayList().get(i1).getKeyword());
                 return view;
             }
 
@@ -198,6 +107,116 @@ public class HaomabaishitongMain extends MyActivity {
             }
         };
         expandableListView.setAdapter(adapter);
+        getData();
+        setView();
+
+    }
+
+    @Override
+    protected void onStart() {
+        myDataBase = new MyDataBase(this, "number.db", null, 1);
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onStop() {
+        myDataBase.close();
+        super.onStop();
+
+    }
+
+    /**
+     * 从数据库获取数据
+     */
+
+    private void getData() {
+        parents.clear();
+//        myDataBase = new MyDataBase(this,groups);
+        myDataBase = new MyDataBase(this, "number.db", null, 1);
+        //联系人总数 >0 表示列表不为空
+        count = 0;
+        //从stringarray中读取分组名字
+        int i = 0;
+        children.clear();
+
+        for (CharSequence groupname : groups) {
+            Cursor cursor1 = myDataBase.selectByGroup(i);
+            if (cursor1.getCount() != 0) {
+                count++;
+                //该分组下有数据，添加带数据的分组
+                while (cursor1.moveToNext()) {
+                    String name = cursor1.getString(cursor1.getColumnIndex("name"));
+                    String number = cursor1.getString(cursor1.getColumnIndex("number"));
+                    String keyword = cursor1.getString(cursor1.getColumnIndex("keyword"));
+                    child = new Child(name, number,keyword);
+                    children.add(child);
+                }
+                cursor1.close();
+                parents.add(new Parent(children, groupname.toString()));
+                Log.e(TAG, "getData: "+parents.size()+" / "+children.size());
+                children.clear();
+            } else {
+                //添加空分组
+
+                parents.add(new Parent(groupname.toString()));
+            }
+            i++;
+        }
+        if(count==0){
+            Toast.makeText(this, "暂无联系人信息，点击右上角添加。", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    /**
+     * 显示结果集内的数据
+     *
+     * @param cursor 给定的结果集
+     */
+    private void getData(Cursor cursor) {
+        parents.clear();
+        if (cursor.getCount() != 0) {
+            ArrayList<Child> children2 = new ArrayList<Child>();
+            children.clear();
+            parents.clear();
+            while (cursor.moveToNext()) {
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String number = cursor.getString(cursor.getColumnIndex("number"));
+                String keyword = cursor.getString(cursor.getColumnIndex("keyword"));
+                int gid = cursor.getInt(cursor.getColumnIndex("groupid"));
+                Child child = new Child(name, number,gid,keyword);
+                switch (gid){
+                    case  0:
+                        children2.add(child);
+                        break;
+                    case  1:
+                        children.add(child);
+                        break;
+                }
+                Log.e(TAG, "getData: "+name+" \\ " + number +" \\ " +gid);
+//                Child child = new Child(name, number);
+//                children.add(child);
+            }
+            CharSequence[] groups = getResources().getTextArray(R.array.groups);
+            parents.add(new Parent(children2,groups[0].toString()));
+            parents.add(new Parent(children,groups[1].toString()));
+            children2.clear();
+            children.clear();
+//            parents.add(new Parent(children, "搜索结果"));
+            cursor.close();
+        } else {
+            Toast.makeText(this, "没有符合要求的结果", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 将数据库中的数据装入适配器，并显示数据
+     */
+
+    private void setView() {
+
+        adapter.notifyDataSetChanged();
         //展开列表
         for (int i = 0; i < parents.size(); i++) {
             expandableListView.expandGroup(i);
@@ -210,9 +229,17 @@ public class HaomabaishitongMain extends MyActivity {
             }
         });
 
-
     }
 
+    /**
+     * 当从添加号码页面返回时刷新联系人信息
+     */
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getData();
+        setView();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -223,7 +250,6 @@ public class HaomabaishitongMain extends MyActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                //// TODO: 2017/5/1 查询所要的号码并显示结果
                 getData(myDataBase.selectByAnything(s));
                 setView();
                 return false;

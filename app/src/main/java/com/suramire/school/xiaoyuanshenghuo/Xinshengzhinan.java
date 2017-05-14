@@ -6,18 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 
 /**
  * Created by Suramire on 2017/5/1.
  */
 
-public class Xinshengzhinan extends AppCompatActivity {
-    String str1,str2,str3,str4,str5,str6,str7,str8;
+public class Xinshengzhinan extends MyActivity {
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xinshengzhinan);
 

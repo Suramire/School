@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.ViewSwitcher;
 
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 
 import java.util.ArrayList;
@@ -20,13 +21,12 @@ import java.util.HashMap;
  * Created by Suramire on 2017/5/1.
  */
 
-public class Xiaoyuanfengjing extends AppCompatActivity {
+public class Xiaoyuanfengjing extends MyActivity {
     private GridView gridView;
     private ImageSwitcher imageSwitcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xiaoyuanfengjing);
         gridView = (GridView) findViewById(R.id.gridView1);

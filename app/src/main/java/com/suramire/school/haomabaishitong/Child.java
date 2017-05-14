@@ -8,14 +8,22 @@ public class Child {
     private String name;
     private String number;
     private  int groupindex;
+    private  String keyword;
 
-    public int getGroupindex() {
-        return groupindex;
-    }
-
-    public void setGroupindex(int groupindex) {
+    //带关键字的联系人
+    public Child(String name, String number, int groupindex, String keyword) {
+        this.name = name;
+        this.number = number;
         this.groupindex = groupindex;
+        this.keyword = keyword;
     }
+    //不带分组的联系人
+    public Child(String name, String number, String keyword) {
+        this.name = name;
+        this.number = number;
+        this.keyword = keyword;
+    }
+
     //默认分组(学生)
     public Child(String name, String number) {
         this.name = name;
@@ -43,5 +51,21 @@ public class Child {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public int getGroupindex() {
+        return groupindex;
+    }
+
+    public void setGroupindex(int groupindex) {
+        this.groupindex = groupindex;
     }
 }

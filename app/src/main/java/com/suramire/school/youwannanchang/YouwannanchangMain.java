@@ -41,9 +41,15 @@ public class YouwannanchangMain extends MyActivity {
         setContentView(R.layout.youwannanchang);
         listView = (ListView) findViewById(R.id.listView);
         ArrayList<HashMap<String,Objects>> data = new ArrayList<HashMap<String,Objects>>();
-        names = new String[]{"景点名1","景点名2","景点名3","景点名4","景点名5","景点名6","景点名7"};
-        texts = new String[]{"景点描述1","景点描述2","景点描述3","景点描述4","景点描述5","景点描述6","景点描述7"};
-        images = new int[]{R.drawable.badashanrenjinianguan,R.drawable.baosige,R.drawable.beihu,R.drawable.chayuan,R.drawable.fengyuan,R.drawable.guiyuan,R.drawable.hanwangfeng};
+        names = new String[]{"滕王阁", "八大山人纪念馆", "罕王峰", "象山森林公园", "西山万寿宫",
+                "梅岭"};
+        texts = new String[]{"江南三大名楼之首", "集收藏、陈列、研究、宣传为一体",
+                "青山绿水，风景多彩，盛夏气候凉爽", "避暑、休闲、疗养、度假的最佳场所", "江南著名道教宫观和游览胜地",
+                "山势嵯峨，层峦叠翠，四时秀色，气候宜人" };
+        images = new int[]{R.drawable.tengwangge,
+                R.drawable.badashanrenjinianguan, R.drawable.hanwangfeng,
+                R.drawable.xiangshangongyuan, R.drawable.xishanwanshougong,
+                R.drawable.meiling};
         items = new ArrayList<Item>();
         for(int i = 0; i< names.length; i++){
             items.add(new Item(names[i], texts[i], images[i]));

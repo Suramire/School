@@ -69,12 +69,17 @@ public class NewNumber extends AppCompatActivity {
      * 提交数据,将数据存入数据库
      */
     private void sumbit() {
-        Child child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition());
+        Child child = null;
+        if("".equals(editText4.getText().toString())){
+            child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition());
+        }else{
+            child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition(),editText4.getText().toString());
+        }
         if(myDataBase.insert(child)!=-1){
             Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+            finish();
         }else{
             Toast.makeText(this, "添加失败", Toast.LENGTH_SHORT).show();
         }
-        //// TODO: 2017/5/13  添加号码后返回主界面 ，主界面进行刷新
     }
 }

@@ -22,86 +22,67 @@
     <!--用于申请获取蓝牙信息进行室内定位-->
     <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+
     <application
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="7b4d1075c8a23b7314616e78846f611c"/>
+            android:value="7b4d1075c8a23b7314616e78846f611c" />
         <!-- 添加用于定位的服务 -->
         <service android:name="com.amap.api.location.APSService"></service>
-        <activity android:name=".MainActivity"
+
+        <activity
+            android:name=".MainActivity"
             android:icon="@mipmap/ic_launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".xiaoyuanshenghuo.XiaoyuanshenghuoMain"
-            android:label="@string/xiaoyuanshenghuo" >
-
-        </activity>
+            android:label="@string/xiaoyuanshenghuo" />
         <activity
             android:name=".xiaoyuanshenghuo.Pingmiantu"
-            android:label="@string/pingmiantu" >
-
-        </activity>
+            android:label="@string/pingmiantu" />
         <activity
             android:name=".xiaoyuanshenghuo.Xinshengzhinan"
-            android:label="@string/xinshengzhinan" >
-
-        </activity>
-
+            android:label="@string/xinshengzhinan" />
         <activity
             android:name=".xiaoyuanshenghuo.Xiaoyuanfengjing"
-            android:label="@string/xiaoyuanfengjing" >
-
-        </activity>
-
+            android:label="@string/xiaoyuanfengjing" />
         <activity
             android:name=".xiaoyuanshenghuo.Xinshengzhinan1"
-            android:label="@string/xinshengzhinan" >
-
-        </activity>
+            android:label="@string/xinshengzhinan"/>
         <activity
             android:name=".chuxingzhinan.ChuxingzhinanMain"
-            android:label="@string/chuxingzhinan" >
-
-        </activity>
+            android:label="@string/chuxingzhinan" />
         <activity
             android:name=".chuxingzhinan.Wodeweizhi"
-            android:label="@string/wodeweizhi" >
-
-        </activity>
-
+            android:label="@string/wodeweizhi" />
         <activity
             android:name=".chuxingzhinan.Guanjiandianchaxun"
-            android:label="@string/guanjiandianchaxun"
-            >
-
-        </activity>
+            android:label="@string/guanjiandianchaxun" />
         <activity
             android:name=".chuxingzhinan.Xianluchaxun"
-            android:label="@string/xianluchaxun"
-            >
-        </activity>
-        <activity android:name=".haomabaishitong.HaomabaishitongMain"
-            android:label="@string/haomabaishitong">
-        </activity>
-        <activity android:name=".haomabaishitong.NewNumber"
-            android:label="@string/newnum_title"
-            ></activity>
-        <activity android:name=".youwannanchang.YouwannanchangMain"
-            android:label="@string/youwannanchang"
-            />
-        <activity android:name=".youwannanchang.Jingdianjieshao"
-            android:label="@string/jingdianjieshao"/>
+            android:label="@string/xianluchaxun"/>
+        <activity
+            android:name=".haomabaishitong.HaomabaishitongMain"
+            android:label="@string/haomabaishitong"/>
+        <activity
+            android:name=".haomabaishitong.NewNumber"
+            android:label="@string/newnum_title"/>
+        <activity
+            android:name=".youwannanchang.YouwannanchangMain"
+            android:label="@string/youwannanchang" />
+        <activity
+            android:name=".youwannanchang.Jingdianjieshao"
+            android:label="@string/jingdianjieshao" />
     </application>
 
 </manifest>

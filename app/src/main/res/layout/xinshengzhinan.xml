@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/xinshengzhinan"
@@ -10,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <Button
             android:id="@+id/button1"
@@ -19,7 +21,7 @@
             android:background="@null"
             android:minHeight="40dp"
             android:onClick="click1"
-            android:text="整理新装"
+            android:text="@string/zhenglixinzhuang"
             android:textColor="@color/black" />
 
         <Button
@@ -29,7 +31,7 @@
             android:background="@null"
             android:minHeight="40dp"
             android:onClick="click1"
-            android:text="抵达目的地"
+            android:text="@string/didamudidi"
             android:textColor="@color/black" />
 
         <Button
@@ -39,7 +41,7 @@
             android:background="@null"
             android:minHeight="40dp"
             android:onClick="click1"
-            android:text="入校第一站"
+            android:text="@string/ruxiaodiyizhan"
             android:textColor="@color/black" />
 
         <Button
@@ -49,7 +51,7 @@
             android:background="@null"
             android:minHeight="40dp"
             android:onClick="click1"
-            android:text="我是一个兵"
+            android:text="@string/woshiyigebin"
             android:textColor="@color/black" />
 
         <Button
@@ -59,7 +61,7 @@
             android:background="@null"
             android:minHeight="40dp"
             android:onClick="click1"
-            android:text="生活万花筒"
+            android:text="@string/shenghuowanhuatong"
             android:textColor="@color/black" />
 
         <Button
@@ -68,7 +70,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:onClick="click1"
-            android:text="结交新朋友"
+            android:text="@string/jiejiaoxinpengyou"
             android:textColor="@color/black" />
 
         <Button
@@ -78,7 +80,7 @@
             android:background="@null"
             android:minHeight="40dp"
             android:onClick="click1"
-            android:text="勤练有补助"
+            android:text="@string/qinglianyoubuzhu"
             android:textColor="@color/black" />
 
         <Button
@@ -88,7 +90,7 @@
             android:background="@null"
             android:minHeight="40dp"
             android:onClick="click1"
-            android:text="学长学姐寄语"
+            android:text="@string/xuezhangxuejiejiyu"
             android:textColor="@color/black" />
 
     </LinearLayout>

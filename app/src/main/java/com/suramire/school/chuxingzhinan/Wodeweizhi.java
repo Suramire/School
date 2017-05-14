@@ -11,13 +11,14 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 
 /**
  * Created by Suramire on 2017/5/1.
  */
 
-public class Wodeweizhi extends AppCompatActivity {
+public class Wodeweizhi extends MyActivity {
     private String keyString = "10a889d0c8e4ef5453561e7abe046c96";
     private double latitude = 0.0;//当前纬度
     private double longtitude = 0.0;//当前经度
@@ -53,7 +54,6 @@ public class Wodeweizhi extends AppCompatActivity {
     private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wodeweizhi);
         webView = (WebView) findViewById(R.id.webView1);
