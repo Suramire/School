@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 import com.suramire.school.Util.MyDataBase;
 
@@ -16,7 +17,7 @@ import com.suramire.school.Util.MyDataBase;
  * Created by Suramire on 2017/5/1.
  */
 
-public class NewNumber extends AppCompatActivity {
+public class NewNumber extends MyActivity {
     private static final String TAG = "SCHOOL";
     private EditText editText;//姓名
     private EditText editText2;//电话

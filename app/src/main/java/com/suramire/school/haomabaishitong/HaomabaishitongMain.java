@@ -37,6 +37,7 @@ public class HaomabaishitongMain extends MyActivity {
     private Child child;
     private int count;
     private BaseExpandableListAdapter adapter;
+    private boolean once = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -205,8 +206,11 @@ public class HaomabaishitongMain extends MyActivity {
             children.clear();
 //            parents.add(new Parent(children, "搜索结果"));
             cursor.close();
+            once = true;
         } else {
+            if(once)
             Toast.makeText(this, "没有符合要求的结果", Toast.LENGTH_SHORT).show();
+            once = false;
         }
     }
 

@@ -31,7 +31,7 @@ public class Xiaoyuanfengjing extends MyActivity {
         setContentView(R.layout.xiaoyuanfengjing);
         gridView = (GridView) findViewById(R.id.gridView1);
         imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher1);
-        ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
+        final ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
         final int[] images ={R.drawable.a1,R.drawable.a2,R.drawable.a3,R.drawable.a4,R.drawable.a5,R.drawable.a6,
                 R.drawable.a7,R.drawable.a9,R.drawable.a10,R.drawable.a12,R.drawable.a13,
                 R.drawable.a15,R.drawable.a17,R.drawable.a19};
@@ -62,6 +62,12 @@ public class Xiaoyuanfengjing extends MyActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 imageSwitcher.setImageResource(images[position]);
+                for(int i=0;i<gridView.getChildCount();i++){
+                    gridView.getChildAt(i).setAlpha(0.3f);
+                    gridView.getChildAt(i).setBackground(null);
+                }
+                gridView.getChildAt(position).setAlpha(1.0f);
+                gridView.getChildAt(position).setBackground(null);
 
             }
         });
