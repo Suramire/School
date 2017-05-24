@@ -1,11 +1,12 @@
 package com.suramire.school;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
+import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
@@ -51,11 +52,23 @@ public class MyWebActivity extends MyActivity {
         }
     };
     public WebView webView;
+    private ProgressBar progressBar;
 
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.wodeweizhi);
     webView = (WebView) findViewById(R.id.webView1);
+        //添加浏览器进度条
+    progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        webView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                progressBar.setProgress(newProgress);
+                if(newProgress==100){
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+        });
     //获取网页的配置
     WebSettings settings = webView.getSettings();
     //设置启动js
@@ -73,7 +86,8 @@ public class MyWebActivity extends MyActivity {
     //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
     mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
     //获取最近3s内精度最高的一次定位结果：
-    //设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
+    //设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。
+     // 如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
     mLocationOption.setOnceLocationLatest(true);
     //给定位客户端对象设置定位参数
     mLocationClient.setLocationOption(mLocationOption);

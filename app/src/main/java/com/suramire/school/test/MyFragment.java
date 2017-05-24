@@ -12,6 +12,7 @@ import com.suramire.school.R;
 
 /**
  * Created by Suramire on 2017/5/20.
+ * 用于显示新生指南的子内容
  */
 
 public class MyFragment extends Fragment {

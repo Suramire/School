@@ -33,8 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="请输入联系人姓名"
             android:inputType="textPersonName"
-            tools:ignore="LabelFor" />
+            tools:ignore="LabelFor"/>
 
     </LinearLayout>
 
@@ -57,8 +58,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="请输入联系人电话"
             android:inputType="phone"
-            tools:ignore="LabelFor" />
+            tools:ignore="LabelFor"/>
 
     </LinearLayout>
 
@@ -103,8 +105,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="填写关键字(选填)"
             android:inputType="textPersonName"
-            tools:ignore="LabelFor" />
+            tools:ignore="LabelFor"/>
     </LinearLayout>
 
     <LinearLayout

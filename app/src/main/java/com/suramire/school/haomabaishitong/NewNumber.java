@@ -71,16 +71,22 @@ public class NewNumber extends MyActivity {
      */
     private void sumbit() {
         Child child = null;
-        if("".equals(editText4.getText().toString())){
-            child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition());
+        if("".equals(editText.getText().toString().trim()) ||"".equals(editText2.getText().toString().trim())){
+            Toast.makeText(this, "请填写联系人姓名与号码", Toast.LENGTH_SHORT).show();
         }else{
-            child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition(),editText4.getText().toString());
+            if("".equals(editText4.getText().toString())){
+                //不带关键字的联系人信息
+                child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition());
+            }else{
+                child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition(),editText4.getText().toString());
+            }
+            if(myDataBase.insert(child)!=-1){
+                Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+                finish();
+            }else{
+                Toast.makeText(this, "添加失败", Toast.LENGTH_SHORT).show();
+            }
         }
-        if(myDataBase.insert(child)!=-1){
-            Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
-            finish();
-        }else{
-            Toast.makeText(this, "添加失败", Toast.LENGTH_SHORT).show();
-        }
+
     }
 }

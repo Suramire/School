@@ -1,35 +1,20 @@
 package com.suramire.school.chuxingzhinan;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.support.v7.widget.SearchView;
-
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
-import com.suramire.school.MyActivity;
+import android.widget.Toast;
 import com.suramire.school.MyWebActivity;
 import com.suramire.school.R;
 import com.suramire.school.Util.MyJsonUtil;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.nio.charset.Charset;
+import java.net.URLEncoder;
+
 
 /**
  * Created by Suramire on 2017/5/1.
@@ -50,14 +35,13 @@ public class Xianluchaxun extends MyWebActivity {
 
             @Override
             public boolean onQueryTextSubmit(final String query) {
-                Log.e("onQueryTextSubmit", "onQueryTextSubmit");
                 new Thread(new Runnable() {
                     private String url2;
                     @Override
                     public void run() {
                         //先对要搜索的字符串进行url编码
                         try {
-                            String query1 = java.net.URLEncoder.encode(query, "UTF-8");
+                            String query1 = URLEncoder.encode(query, "UTF-8");
                             JSONObject json = MyJsonUtil.readJsonFromUrl("http://restapi.amap.com/v3/geocode/geo?key=10a889d0c8e4ef5453561e7abe046c96&s=rsv3&city=35&address="+query1);
                             //从json中获得目标地点的坐标值
                             String locationString = json.getJSONArray("geocodes").getJSONObject(0).get("location").toString();
@@ -85,7 +69,13 @@ public class Xianluchaxun extends MyWebActivity {
                             Log.e("onQueryTextSubmit", "IOException");
                             e.printStackTrace();
                         } catch (JSONException e) {
+                            //使用此方法来在线程中toast 2017-5-24 16:22:14
+                            Looper.prepare();
+                            Toast.makeText(Xianluchaxun.this, "请输入正确的关键字", Toast.LENGTH_SHORT).show();
+                            Looper.loop();
+
                             Log.e("onQueryTextSubmit", "JSONException");
+
                             e.printStackTrace();
                         };
                     }

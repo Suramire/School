@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_margin="10dp"
+        android:scaleType="fitXY"
         android:src="@drawable/xinshengzhinan"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
 </LinearLayout>

@@ -1,8 +1,11 @@
 package com.suramire.school.xiaoyuanshenghuo;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageSwitcher;
@@ -55,6 +58,19 @@ public class Xiaoyuanfengjing extends MyActivity {
             }
         });
         imageSwitcher.setImageResource(R.drawable.a10);
+        //在图片加载完成时将除第一张外的图片设置为半透明
+        gridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                for(int i=0;i<gridView.getChildCount();i++){
+                    gridView.getChildAt(i).setAlpha(0.3f);
+                    gridView.getChildAt(i).setBackground(null);
+                }
+                gridView.getChildAt(0).setAlpha(1.0f);
+                gridView.getChildAt(0).setBackground(null);
+                gridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -67,7 +83,7 @@ public class Xiaoyuanfengjing extends MyActivity {
                     gridView.getChildAt(i).setBackground(null);
                 }
                 gridView.getChildAt(position).setAlpha(1.0f);
-                gridView.getChildAt(position).setBackground(null);
+                gridView.getChildAt(position).setBackgroundResource(R.drawable.gallery_select);
 
             }
         });
