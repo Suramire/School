@@ -72,7 +72,12 @@
             android:label="@string/guanjiandianchaxun" />
         <activity
             android:name=".chuxingzhinan.Xianluchaxun"
-            android:label="@string/xianluchaxun"/>
+            android:label="@string/luxianguihua"/>
+
+        <activity android:name=".chuxingzhinan.Gongjiaochaxun"
+            android:label="@string/gongjiaochaxun"
+            />
+
         <activity
             android:name=".haomabaishitong.HaomabaishitongMain"
             android:label="@string/haomabaishitong"/>

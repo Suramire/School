@@ -21,9 +21,9 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:onClick="click"
-            android:text="@string/xianluchaxun"
+            android:text="@string/gongjiaochaxun"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/button1"
@@ -42,6 +42,16 @@
             android:background="@null"
             android:onClick="click"
             android:text="@string/guanjiandianchaxun"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:onClick="click"
+            android:text="@string/luxianguihua"
             android:textColor="@color/black"
             android:textSize="20sp" />
 

@@ -26,15 +26,20 @@ public class ChuxingzhinanMain extends MyActivity {
                 Intent intent = new Intent(this, Wodeweizhi.class);
                 startActivity(intent);
                 break;
-            //线路查询
+            //公交查询
             case R.id.button2:
-                Intent intent2 = new Intent(this, Xianluchaxun.class);
+                Intent intent2 = new Intent(this, Gongjiaochaxun.class);
                 startActivity(intent2);
                 break;
             //关键点查询
             case R.id.button3:
                 Intent intent3 = new Intent(this, Guanjiandianchaxun.class);
                 startActivity(intent3);
+                break;
+            //路线规划
+            case R.id.button10:
+                Intent intent4 = new Intent(this, Xianluchaxun.class);
+                startActivity(intent4);
                 break;
             default:
                 break;
