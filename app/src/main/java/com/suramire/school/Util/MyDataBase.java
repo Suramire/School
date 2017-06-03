@@ -44,7 +44,9 @@ public class MyDataBase extends SQLiteOpenHelper {
      * @return
      */
     public Cursor selectByAnything(String text) {
-        return mydb.query("num", null, "name like ? or number like ? or keyword like ? ", new String[]{"%" + text + "%", "%" + text + "%" , "%" + text + "%"}, null, null, null);
+        return mydb.query("num", null, "name like ? or number like ? or keyword like ? ",
+                new String[]{"%" + text + "%", "%" + text + "%" , "%" + text + "%"},
+                null, null, null);
     }
 
     /**

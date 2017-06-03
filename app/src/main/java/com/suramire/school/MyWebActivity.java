@@ -44,9 +44,12 @@ public class MyWebActivity extends MyActivity {
                     String url = "http://m.amap.com/navi/?dest="+longtitude+","+latitude
                             +"&destName=我的位置&hideRouteIcon=1&key="+keyString;
                     webView.loadUrl(url);
-                    Toast.makeText(MyWebActivity.this, "当前位置:"+arg0.getAoiName()+"("+arg0.getPoiName()+")", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MyWebActivity.this, "当前位置:"+arg0.getAoiName()
+                            +"("+arg0.getPoiName()+")", Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(MyWebActivity.this, "定位失败:错误信息"+arg0.getErrorInfo()+"错误码:"+arg0.getErrorCode(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(MyWebActivity.this, "定位失败:错误信息"
+                            +arg0.getErrorInfo()+"错误码:"+arg0.getErrorCode(),
+                            Toast.LENGTH_LONG).show();
                 }
             }
         }

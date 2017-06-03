@@ -129,7 +129,6 @@ public class HaomabaishitongMain extends MyActivity {
     /**
      * 从数据库获取数据
      */
-
     private void getData() {
         parents.clear();
         myDataBase = new MyDataBase(this, "number.db", null, 1);
@@ -138,7 +137,6 @@ public class HaomabaishitongMain extends MyActivity {
         //从stringarray中读取分组名字
         int i = 0;
         children.clear();
-
         for (CharSequence groupname : groups) {
             Cursor cursor1 = myDataBase.selectByGroup(i);
             if (cursor1.getCount() != 0) {
@@ -156,7 +154,6 @@ public class HaomabaishitongMain extends MyActivity {
                 children.clear();
             } else {
                 //添加空分组
-
                 parents.add(new Parent(groupname.toString()));
             }
             i++;
@@ -164,7 +161,6 @@ public class HaomabaishitongMain extends MyActivity {
         if(count==0){
             Toast.makeText(this, "暂无联系人信息，点击右上角添加。", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     /**

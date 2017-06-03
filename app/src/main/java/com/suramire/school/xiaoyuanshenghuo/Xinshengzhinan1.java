@@ -26,18 +26,18 @@ public class Xinshengzhinan1 extends MyActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.xinshengzhinan2);
-        int index = getIntent().getIntExtra("text",0);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        final String[] texts = getResources().getStringArray(R.array.guids);
-        final String[] titles = getResources().getStringArray(R.array.title);
+        int index = getIntent().getIntExtra("text",0);//获取传入的下标
+        final String[] texts = getResources().getStringArray(R.array.guids);//获取文本内容
+        final String[] titles = getResources().getStringArray(R.array.title);//获取标题
         final ArrayList<MyFragment> fragments = new ArrayList<>();
         for(String text :texts){
             MyFragment myFragment = new MyFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("text",text);
+            bundle.putString("text",text);//将文本内容传入fragment
             myFragment.setArguments(bundle);
-            fragments.add(myFragment);
+            fragments.add(myFragment);//将fragment存入list
         }
 
 

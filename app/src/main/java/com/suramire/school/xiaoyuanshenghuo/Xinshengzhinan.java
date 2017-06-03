@@ -30,15 +30,12 @@ public class Xinshengzhinan extends MyActivity {
                 intent.putExtra("text",0);
                 break;
             case R.id.button2:
-
                 intent.putExtra("text",1);
                 break;
             case R.id.button3:
-
                 intent.putExtra("text",2);
                 break;
             case R.id.button4:
-
                 intent.putExtra("text",3);
                 break;
             case R.id.button5:
@@ -48,7 +45,6 @@ public class Xinshengzhinan extends MyActivity {
                 intent.putExtra("text",5);
                 break;
             case R.id.button7:
-
                 intent.putExtra("text",6);
                 break;
             case R.id.button8:
