@@ -1,6 +1,5 @@
 package com.suramire.school.xiaoyuanshenghuo;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,18 +7,16 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.suramire.school.MyActivity;
 import com.suramire.school.R;
-import com.suramire.school.test.MyFragment;
 
 import java.util.ArrayList;
 
 /**
  * Created by Suramire on 2017/5/1.
+ * 显示对应的新生指南页面 采用viewpager与fragment结合
  */
 
 public class Xinshengzhinan1 extends MyActivity {
@@ -83,5 +80,6 @@ public class Xinshengzhinan1 extends MyActivity {
         //使tabLayout 可以滚动
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(viewPager);
+        Toast.makeText(this, "左右滑动切换页面", Toast.LENGTH_LONG).show();
     }
 }

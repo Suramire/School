@@ -17,7 +17,7 @@ import com.amap.api.location.AMapLocationListener;
 
 /**
  * Created by Suramire on 2017/5/20.
- * 合并跟地图有关的三个页面的功能
+ * 合并跟地图有关的三个页面的功能 该activity默认显示当前位置的坐标地图
  */
 
 public class MyWebActivity extends MyActivity {
@@ -66,6 +66,8 @@ public class MyWebActivity extends MyActivity {
                 progressBar.setProgress(newProgress);
                 if(newProgress==100){
                     progressBar.setVisibility(View.GONE);
+                }else{
+                    progressBar.setVisibility(View.VISIBLE);
                 }
             }
         });

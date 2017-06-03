@@ -2,6 +2,7 @@ package com.suramire.school.haomabaishitong;
 
 /**
  * Created by Suramire on 2017/5/1.
+ * 实体类 号码
  */
 
 public class Child {

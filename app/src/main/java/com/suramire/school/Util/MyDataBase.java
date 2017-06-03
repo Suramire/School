@@ -12,20 +12,13 @@ import com.suramire.school.haomabaishitong.Child;
 
 /**
  * Created by Suramire on 2017/5/2.
+ * 实现对数据库的相关操作
  */
 
 public class MyDataBase extends SQLiteOpenHelper {
     private static final String TAG = "MyDataBase";
     SQLiteDatabase mydb;
     Context context;
-
-    public CharSequence[] getGroupsname() {
-        return groupsname;
-    }
-
-    public void setGroupsname(CharSequence[] groupsname) {
-        this.groupsname = groupsname;
-    }
 
     CharSequence[] groupsname;
 
@@ -35,29 +28,6 @@ public class MyDataBase extends SQLiteOpenHelper {
         mydb = getWritableDatabase();
     }
 
-    //    public MyDataBase(Context context,CharSequence[] groupsname) {
-//        db = context.openOrCreateDatabase("number.db",Context.MODE_PRIVATE,null);
-//        this.groupsname = groupsname;
-//        init();
-//    }
-
-//    /**
-//     * 初始化 创建表(如果不存在)并将分组名称写入数据库
-//     */
-//    public void init(){
-//        db.execSQL("create table if not exists num(_id integer primary key autoincrement,name varchar,number varchar,groupid integer,keyword varchar)");
-//        db.execSQL("create table if not exists groups(_id integer primary key autoincrement,groupname varchar)");
-//
-//        //将分组名提前写入数据库
-//        ContentValues values =new ContentValues();
-//        for(CharSequence name :groupsname){
-//            values.put("groupname",name.toString());
-//            db.insert("groups",null,values);
-//            Log.e(TAG, "init: "+ name.toString());
-//            values.clear();
-//        }
-//
-//    }
 
     /**
      * 查询所有数据
@@ -125,7 +95,6 @@ public class MyDataBase extends SQLiteOpenHelper {
         for (CharSequence name : groupsname) {
             values.put("groupname", name.toString());
             db.insert("groups", null, values);
-            Log.e(TAG, "init: " + name.toString());
             values.clear();
         }
     }

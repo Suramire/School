@@ -18,6 +18,7 @@ import java.net.URLEncoder;
 
 /**
  * Created by Suramire on 2017/5/1.
+ * 线路规划 显示当前位置到目的地之间的路径
  */
 
 public class Xianluchaxun extends MyWebActivity {
@@ -46,13 +47,9 @@ public class Xianluchaxun extends MyWebActivity {
                             //从json中获得目标地点的坐标值
                             String locationString = json.getJSONArray("geocodes").getJSONObject(0).get("location").toString();
                             String[] locations = locationString.split(",");
-                            for(String xString :locations){
-                                Log.e("L", xString);
-                            }
                             targetLatitude =Double.parseDouble(locations[0]);
                             targetLongtitude = Double.parseDouble(locations[1]);
                             url2 = "http://m.amap.com/navi/?start="+longtitude+","+latitude+"&dest="+targetLatitude+","+targetLongtitude+"&destName=%E6%98%BE%E7%A4%BA%E8%B7%AF%E7%BA%BF&key="+keyString;
-                            Log.e("URL", url2);
                             webView.post(new Runnable() {
 
                                 @Override

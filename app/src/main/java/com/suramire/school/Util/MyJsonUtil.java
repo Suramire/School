@@ -13,6 +13,7 @@ import java.nio.charset.Charset;
 
 /**
  * Created by Suramire on 2017/5/20.
+ * 获取json中的经纬度数据
  */
 
 public class MyJsonUtil {
@@ -35,7 +36,6 @@ public class MyJsonUtil {
             return json;
         } finally {
             is.close();
-            // System.out.println("同时 从这里也能看出 即便return了，仍然会执行finally的！");
         }
     }
 }

@@ -101,8 +101,7 @@ public class YouwannanchangMain extends MyActivity {
     }
     public void enter(int i){
         Intent intent1 = new Intent(YouwannanchangMain.this, Jingdianjieshao.class);
-        intent1.putExtra("text",i);//景点介绍的数组下标
-        intent1.putExtra("image",images[i]);//对应的图片
+        intent1.putExtra("textindex",i);//景点介绍的数组下标
         startActivity(intent1);
     }
 

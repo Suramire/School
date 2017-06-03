@@ -1,9 +1,6 @@
 package com.suramire.school.xiaoyuanshenghuo;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
@@ -22,6 +19,7 @@ import java.util.HashMap;
 
 /**
  * Created by Suramire on 2017/5/1.
+ * 显示校园风景图片(滑动切换)
  */
 
 public class Xiaoyuanfengjing extends MyActivity {
@@ -43,7 +41,6 @@ public class Xiaoyuanfengjing extends MyActivity {
             map.put("image", images[i]);
             data.add(map);
         }
-        //重装git测试
         String[] from = {"image"};
         int[] to = {R.id.imageView1};
         SimpleAdapter adapter = new SimpleAdapter(Xiaoyuanfengjing.this, data, R.layout.xiaoyuanfengjing_item, from, to);

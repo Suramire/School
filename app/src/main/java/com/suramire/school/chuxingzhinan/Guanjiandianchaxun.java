@@ -1,20 +1,10 @@
 package com.suramire.school.chuxingzhinan;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
-import com.suramire.school.MyActivity;
 import com.suramire.school.MyWebActivity;
 import com.suramire.school.R;
 
@@ -31,11 +21,11 @@ public class Guanjiandianchaxun extends MyWebActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setQueryHint("输入关键字进行搜索");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(final String query) {
-                Log.e("onQueryTextSubmit", "onQueryTextSubmit");
                 new Thread(new Runnable() {
 
                     private String url2;

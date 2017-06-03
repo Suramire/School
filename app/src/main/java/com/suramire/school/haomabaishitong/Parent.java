@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Suramire on 2017/5/1.
+ * 实体类 分组
  */
 
 public class Parent {

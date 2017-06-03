@@ -12,6 +12,7 @@ import com.suramire.school.R;
 
 /**
  * Created by Suramire on 2017/5/1.
+ * 根据下拉框的选项显示对应平面图
  */
 
 public class Pingmiantu extends MyActivity {

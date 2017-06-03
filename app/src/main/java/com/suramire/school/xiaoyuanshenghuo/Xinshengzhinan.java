@@ -11,6 +11,7 @@ import com.suramire.school.R;
 
 /**
  * Created by Suramire on 2017/5/1.
+ * 根据所选的项进入相应新生指南页面
  */
 
 public class Xinshengzhinan extends MyActivity {

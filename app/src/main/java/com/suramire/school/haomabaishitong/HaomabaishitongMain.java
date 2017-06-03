@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.util.Linkify;
-import android.util.Log;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +23,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Suramire on 2017/5/1.
+ * 号码百事通主界面 分组显示号码 提供模糊查询功能
  */
 
 public class HaomabaishitongMain extends MyActivity {
@@ -133,7 +132,6 @@ public class HaomabaishitongMain extends MyActivity {
 
     private void getData() {
         parents.clear();
-//        myDataBase = new MyDataBase(this,groups);
         myDataBase = new MyDataBase(this, "number.db", null, 1);
         //联系人总数 >0 表示列表不为空
         count = 0;
@@ -155,7 +153,6 @@ public class HaomabaishitongMain extends MyActivity {
                 }
                 cursor1.close();
                 parents.add(new Parent(children, groupname.toString()));
-                Log.e(TAG, "getData: "+parents.size()+" / "+children.size());
                 children.clear();
             } else {
                 //添加空分组
@@ -195,16 +192,12 @@ public class HaomabaishitongMain extends MyActivity {
                         children.add(child);
                         break;
                 }
-                Log.e(TAG, "getData: "+name+" \\ " + number +" \\ " +gid);
-//                Child child = new Child(name, number);
-//                children.add(child);
             }
             CharSequence[] groups = getResources().getTextArray(R.array.groups);
             parents.add(new Parent(children2,groups[0].toString()));
             parents.add(new Parent(children,groups[1].toString()));
             children2.clear();
             children.clear();
-//            parents.add(new Parent(children, "搜索结果"));
             cursor.close();
             once = true;
         } else {
@@ -228,7 +221,6 @@ public class HaomabaishitongMain extends MyActivity {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Log.e(TAG, "onChildClick: "+groupPosition +" / "+childPosition +" / " +id);
                 return false;
             }
         });
@@ -250,7 +242,7 @@ public class HaomabaishitongMain extends MyActivity {
         getMenuInflater().inflate(R.menu.haoma_menu, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search2).getActionView();
         //设置提示文字
-        searchView.setQueryHint("输入姓名或电话号码进行搜索");
+        searchView.setQueryHint("输入姓名或号码或关键字搜索");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
