@@ -170,8 +170,6 @@ public class HaomabaishitongMain extends MyActivity {
         }
         if(count==0){
             Toast.makeText(this, "暂无联系人信息，点击右上角添加。", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(HaomabaishitongMain.this, "更多功能见右上角", Toast.LENGTH_SHORT).show();
         }
     }
 
