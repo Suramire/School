@@ -5,16 +5,26 @@
         android:id="@+id/action_add"
         android:title="@string/action_add"
         android:icon="@drawable/plus"
-        app:showAsAction="ifRoom"
-        android:orderInCategory="99"/>
-    <!--<item-->
-        <!--android:id="@+id/action_back"-->
-        <!--android:title="@string/action_back"-->
-        <!--app:showAsAction="never"-->
-        <!--android:orderInCategory="100"/>-->
+        app:showAsAction="never"
+        android:orderInCategory="10"/>
+    <item
+        android:id="@+id/action_upload"
+        android:title="@string/action_upload"
+        android:icon="@drawable/up"
+        app:showAsAction="never"
+        android:orderInCategory="8"/>
+
+    <item
+        android:id="@+id/action_download"
+        android:title="@string/action_download"
+        android:icon="@drawable/down"
+        app:showAsAction="never"
+        android:orderInCategory="11"/>
     <item
         android:id="@+id/action_search2"
         android:title="@string/action_search"
-        app:showAsAction="always"
-        app:actionViewClass="android.support.v7.widget.SearchView" />
+        app:showAsAction="ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:orderInCategory="9"
+        />
 </menu>

@@ -32,6 +32,8 @@
     <string name="shenghuowanhuatong">生活万花筒</string>
     <string name="jiejiaoxinpengyou">结交新朋友</string>
     <string name="luxianguihua">路线规划</string>
+    <string name="action_upload">上传联系人</string>
+    <string name="action_download">下载联系人</string>
     <string-array name="titles">
         <item>交通示意图</item>
         <item>蛟桥校区</item>

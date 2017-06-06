@@ -27,7 +27,9 @@ public class MyDataBase extends SQLiteOpenHelper {
         this.context = context;
         mydb = getWritableDatabase();
     }
-
+    public Cursor selectByNameNumber(String name, String number){
+        return  mydb.query("num",null,"name =? and number=?",new String[]{name,number},null,null,null);
+    }
 
     /**
      * 查询所有数据
@@ -76,6 +78,11 @@ public class MyDataBase extends SQLiteOpenHelper {
         values.put("groupid", child.getGroupindex());
         return mydb.insert("num", null, values);
     }
+
+    public int delete(String where,String[] strings){
+       return  mydb.delete("num",where,strings);
+    }
+
 
     /**
      * 关闭数据库

@@ -1,22 +1,28 @@
 package com.suramire.school.haomabaishitong;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amap.api.maps.model.Text;
 import com.suramire.school.MyActivity;
 import com.suramire.school.R;
+import com.suramire.school.Util.MyContentProvider;
 import com.suramire.school.Util.MyDataBase;
 
 import java.util.ArrayList;
@@ -37,6 +43,8 @@ public class HaomabaishitongMain extends MyActivity {
     private int count;
     private BaseExpandableListAdapter adapter;
     private boolean once = true;
+    private MyContentProvider myContentProvider;
+    private long insert;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +52,7 @@ public class HaomabaishitongMain extends MyActivity {
         setContentView(R.layout.haomabaishitong_main);
         expandableListView = (ExpandableListView) findViewById(R.id.expandedList);
         groups = getResources().getTextArray(R.array.groups);
-
+        getSupportActionBar().setTitle("");
         adapter = new BaseExpandableListAdapter() {
             @Override
             public int getGroupCount() {
@@ -92,6 +100,7 @@ public class HaomabaishitongMain extends MyActivity {
             @Override
             public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
                 view = LayoutInflater.from(HaomabaishitongMain.this).inflate(R.layout.haomachild, viewGroup, false);
+                view.setTag(R.layout.haomachild);
                 TextView childName = (TextView) view.findViewById(R.id.textView5);
                 TextView childNumber = (TextView) view.findViewById(R.id.textView6);
                 TextView childKeyword = (TextView) view.findViewById(R.id.textView9);
@@ -157,9 +166,12 @@ public class HaomabaishitongMain extends MyActivity {
                 parents.add(new Parent(groupname.toString()));
             }
             i++;
+
         }
         if(count==0){
             Toast.makeText(this, "暂无联系人信息，点击右上角添加。", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(HaomabaishitongMain.this, "更多功能见右上角", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -220,6 +232,44 @@ public class HaomabaishitongMain extends MyActivity {
                 return false;
             }
         });
+        expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            private TextView phone;
+            private TextView name;
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                name = (TextView) view.findViewById(R.id.textView5);
+                phone = (TextView) view.findViewById(R.id.textView6);
+                AlertDialog.Builder builder  = new AlertDialog.Builder(HaomabaishitongMain.this);
+                builder.setTitle("提示").setMessage("是否删除该联系人信息").setIcon(R.mipmap.ic_launcher);
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String nameString = name.getText().toString();
+                        String phoneString = phone.getText().toString();
+                        int delete = myDataBase.delete("name=? and number=?", new String[]{nameString, phoneString});
+                        if(delete !=0){
+                            Toast.makeText(HaomabaishitongMain.this, "删除成功", Toast.LENGTH_SHORT).show();
+                            getData();
+                            setView();
+                        }else{
+                            Toast.makeText(HaomabaishitongMain.this, "删除失败", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setCancelable(false);
+                builder.create().show();
+
+                return false;
+            }
+        });
 
     }
 
@@ -257,6 +307,8 @@ public class HaomabaishitongMain extends MyActivity {
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -264,9 +316,66 @@ public class HaomabaishitongMain extends MyActivity {
                 Intent intent = new Intent(this, NewNumber.class);
                 startActivity(intent);
                 break;
+            case R.id.action_download:
+                //将财大通的联系人数据下载到本地
+                //// FIXME: 2017/6/6  下载联系人重复
+                try {
+                    boolean has = false;
+                    myContentProvider = new MyContentProvider(getContentResolver());
+                    for(Parent parent:parents){
+                        if(parent.getChildArrayList().size()!=0){
+                            has = true;
+                            ArrayList<Child> childArrayList = parent.getChildArrayList();
+                            for(Child child:childArrayList){
+                                myContentProvider.write(child.getName(),child.getNumber());
+                            }
+                        }else{
+
+                        }
+                        if(has){
+                            Toast.makeText(HaomabaishitongMain.this, "下载联系人信息成功", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(HaomabaishitongMain.this, "下载联系人信息失败", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.action_upload:
+                myContentProvider =new MyContentProvider(getContentResolver());
+                ArrayList<Child> children = myContentProvider.read();
+                int mcount = 0;
+                if(children.size()!=0){
+                    //代表有联系人 将其上传至财大通数据库
+                    for(Child child : children){
+                        if(myDataBase.selectByNameNumber(child.getName(),child.getNumber()).getCount()!=0){
+                            //当数据库已存在该联系人时(忽略关键字)不添加
+
+                        }
+                        else{
+                            insert = myDataBase.insert(child);
+                            mcount++;
+                        }
+
+                    }
+                    if(insert!=0&& mcount!=0){
+                        Toast.makeText(this, "上传"+mcount+"位联系人信息成功", Toast.LENGTH_SHORT).show();
+                        getData();
+                        setView();
+                    }else{
+                        Toast.makeText(this, "上传联系人信息失败,是否存在重复联系人", Toast.LENGTH_SHORT).show();
+
+                    }
+                    
+                }else{
+                    Toast.makeText(this, "未读取到本机的联系人信息,请重试", Toast.LENGTH_SHORT).show();
+                }
+                break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

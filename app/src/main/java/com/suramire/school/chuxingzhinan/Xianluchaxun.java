@@ -8,7 +8,7 @@ import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 import com.suramire.school.MyWebActivity;
 import com.suramire.school.R;
-import com.suramire.school.Util.MyJsonUtil;
+import com.suramire.school.Util.MyJsonReader;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class Xianluchaxun extends MyWebActivity {
                         try {
                             String query1 = URLEncoder.encode(query, "UTF-8");
                             //以下这段url用于返回目的地的json
-                            JSONObject json = MyJsonUtil.readJsonFromUrl("http://restapi.amap.com/v3/geocode/geo?" +
+                            JSONObject json = MyJsonReader.readJsonFromUrl("http://restapi.amap.com/v3/geocode/geo?" +
                                     "key=10a889d0c8e4ef5453561e7abe046c96&s=rsv3&city=35&address="+query1);
                             //从json中获得目标地点的坐标值
                             String locationString = json.getJSONArray("geocodes").getJSONObject(0).get("location").toString();
