@@ -7,6 +7,9 @@
 * ImageSwitcher
 * 地图的使用(定位以及路线查询)
 * SQLite数据库的使用
+* ContentProvider
+* ViewPager
+* WebView
 ***
 ## 项目进度
 ### 第一周
