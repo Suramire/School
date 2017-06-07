@@ -21,7 +21,7 @@ public class PinyinComparator implements Comparator<Child> {
 		else if (rhs_ascii < 65 || rhs_ascii > 90)
 			return -1;
 		else
-			return lhs.getPingyin().compareTo(rhs.getPingyin());
+			return lhs.getP().compareTo(rhs.getP());
 	}
 
 }
