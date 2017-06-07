@@ -34,16 +34,14 @@
     <string name="luxianguihua">路线规划</string>
     <string name="action_upload">上传联系人</string>
     <string name="action_download">下载联系人</string>
+    <string name="menu_download">下载该联系人</string>
+    <string name="menu_delete">删除该联系人</string>
+    <string name="menu_phone">呼叫该联系人</string>
     <string-array name="titles">
         <item>交通示意图</item>
         <item>蛟桥校区</item>
         <item>麦庐校区</item>
         <item>枫林校区</item>
-    </string-array>
-    <!--号码百事通联系人分组名-->
-    <string-array name="groups">
-        <item>教师</item>
-        <item>学生</item>
     </string-array>
     <!--景点详情-->
     <string-array name="texts">

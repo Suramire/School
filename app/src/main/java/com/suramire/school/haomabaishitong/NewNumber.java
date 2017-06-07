@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.suramire.school.MyActivity;
 import com.suramire.school.R;
 import com.suramire.school.Util.MyDataBase;
+import com.suramire.school.Util.PinyinUtils;
 
 /**
  * Created by Suramire on 2017/5/1.
@@ -20,19 +21,15 @@ public class NewNumber extends MyActivity {
     private static final String TAG = "SCHOOL";
     private EditText editText;//姓名
     private EditText editText2;//电话
-    private Spinner spinner;//分组
     private EditText editText4;
-    private CharSequence[] groups;
     private MyDataBase myDataBase;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.newnumber);
-        groups = getResources().getTextArray(R.array.groups);
         editText = (EditText) findViewById(R.id.editText);
         editText2 = (EditText) findViewById(R.id.editText2);
-        spinner = (Spinner) findViewById(R.id.spinner2);
         editText4 = (EditText) findViewById(R.id.editText4);
         myDataBase = new MyDataBase(this,"number.db",null,1);
     }
@@ -66,18 +63,41 @@ public class NewNumber extends MyActivity {
     }
 
     /**
+     * 判断字符串是否为数字
+     * @param str
+     * @return
+     */
+    public static boolean isNumeric(String str){
+        for (int i = 0; i < str.length(); i++){
+            System.out.println(str.charAt(i));
+            if (!Character.isDigit(str.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+    /**
      * 提交数据,将数据存入数据库
      */
     private void sumbit() {
         Child child = null;
-        if("".equals(editText.getText().toString().trim()) ||"".equals(editText2.getText().toString().trim())){
+        String number = editText2.getText().toString().trim();
+        String name = editText.getText().toString().trim();
+        if(name==null || name.length()<=0 || number.length()<=0 || number == null){
             Toast.makeText(this, "请填写联系人姓名与号码", Toast.LENGTH_SHORT).show();
+        }else if(!isNumeric(number)){
+            Toast.makeText(this, "电话号码只能为纯数字,请重新输入", Toast.LENGTH_SHORT).show();
+        }else if(number.length()>11){
+            Toast.makeText(this, "电话号码最多不超过11位,请重新输入", Toast.LENGTH_SHORT).show();
         }else{
-            if("".equals(editText4.getText().toString())){
-                //不带关键字的联系人信息
-                child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition());
+            String pingYin = PinyinUtils.getPingYin(name);
+            String p = PinyinUtils.getFirstSpell(name);
+            String keyword = editText4.getText().toString().trim();
+            if(keyword==null || keyword.length()<=0){
+                //不带关键字
+                child = new Child(name,number,pingYin,p);
             }else{
-                child = new Child(editText.getText().toString().trim(),editText2.getText().toString().trim(),spinner.getSelectedItemPosition(),editText4.getText().toString());
+                child = new Child(name,number,keyword,pingYin,p);
             }
             if(myDataBase.insert(child)!=-1){
                 Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();

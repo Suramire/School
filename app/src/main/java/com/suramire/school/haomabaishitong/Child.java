@@ -6,36 +6,26 @@ package com.suramire.school.haomabaishitong;
  */
 
 public class Child {
-    private String name;
-    private String number;
-    private  int groupindex;
-    private  String keyword;
+    private String name;//姓名
+    private String number;//电话
+    private String keyword;//关键字
+    private String pingyin;//拼音
+    private String p;//首字母
 
-    //带关键字的联系人
-    public Child(String name, String number, int groupindex, String keyword) {
-        this.name = name;
-        this.number = number;
-        this.groupindex = groupindex;
-        this.keyword = keyword;
-    }
-    //不带分组的联系人
-    public Child(String name, String number, String keyword) {
-        this.name = name;
-        this.number = number;
-        this.keyword = keyword;
+    public String getPingyin() {
+        return pingyin;
     }
 
-    //默认分组(学生)
-    public Child(String name, String number) {
-        this.name = name;
-        this.number = number;
-        this.groupindex = 1;
+    public void setPingyin(String pingyin) {
+        this.pingyin = pingyin;
     }
-    //根据下标选择分组
-    public Child(String name, String number, int groupindex) {
-        this.name = name;
-        this.number = number;
-        this.groupindex = groupindex;
+
+    public String getP() {
+        return p;
+    }
+
+    public void setP(String p) {
+        this.p = p;
     }
 
     public String getName() {
@@ -61,12 +51,32 @@ public class Child {
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
+    //不带关键字的联系人
+    public Child(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+    //带关键字的联系人
+    public Child(String name, String number, String keyword) {
+        this.name = name;
+        this.number = number;
+        this.keyword = keyword;
+    }
+    //带拼音不带关键字的联系人
 
-    public int getGroupindex() {
-        return groupindex;
+    public Child(String name, String number, String pingyin, String p) {
+        this.name = name;
+        this.number = number;
+        this.pingyin = pingyin;
+        this.p = p;
     }
 
-    public void setGroupindex(int groupindex) {
-        this.groupindex = groupindex;
+    //带拼音以及关键字的联系人
+    public Child(String name, String number, String keyword, String pingyin, String p) {
+        this.name = name;
+        this.number = number;
+        this.keyword = keyword;
+        this.pingyin = pingyin;
+        this.p = p;
     }
 }

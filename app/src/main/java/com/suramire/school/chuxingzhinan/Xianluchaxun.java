@@ -32,6 +32,7 @@ public class Xianluchaxun extends MyWebActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setQueryHint("请输入目的地名");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override

@@ -1,30 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
-
+    android:orientation="vertical" >
+	<!-- 这个TextView就是显示字母的 -->
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:elevation="1dp"
-        android:textSize="18sp"
-        tools:ignore="UnusedAttribute"/>
+        android:id="@+id/tv_lv_item_tag"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#e6e6e6"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip"
+        android:text="Z"
+        android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="150dp"
-        android:textSize="18sp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="100dp"
-        android:textSize="18sp"
-        android:layout_height="wrap_content"
-        android:elevation="1dp"
-        tools:ignore="UnusedAttribute" />
+        <ImageView
+            android:id="@+id/iv_lv_item_head"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/contact"
+            />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:elevation="1dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="#3F51B5"
+            android:textSize="18sp"/>
+
+        <View
+            android:id="@+id/view_lv_item_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="20dip"
+            android:background="#174465"
+            />
+
+    </LinearLayout>
+
 </LinearLayout>

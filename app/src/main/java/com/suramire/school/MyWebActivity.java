@@ -29,6 +29,8 @@ public class MyWebActivity extends MyActivity {
     public AMapLocationClient mLocationClient = null;
     //声明AMapLocationClientOption对象
     public AMapLocationClientOption mLocationOption = null;
+    private String aoiName;
+    private String poiName;
     //声明定位回调监听器
     public AMapLocationListener mLocationListener = new AMapLocationListener() {
 
@@ -39,13 +41,13 @@ public class MyWebActivity extends MyActivity {
                 if(arg0.getErrorCode()==0){
                     latitude = arg0.getLatitude();
                     longtitude = arg0.getLongitude();
+                    poiName = arg0.getPoiName();
+                    aoiName = arg0.getAoiName();
                     webView.setWebViewClient(new WebViewClient());
                     //此处根据所得到的经纬度来显示地图
                     String url = "http://m.amap.com/navi/?dest="+longtitude+","+latitude
                             +"&destName=我的位置&hideRouteIcon=1&key="+keyString;
                     webView.loadUrl(url);
-                    Toast.makeText(MyWebActivity.this, "当前位置:"+arg0.getAoiName()
-                            +"("+arg0.getPoiName()+")", Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(MyWebActivity.this, "定位失败:错误信息"
                             +arg0.getErrorInfo()+"错误码:"+arg0.getErrorCode(),
@@ -69,6 +71,8 @@ public class MyWebActivity extends MyActivity {
                 progressBar.setProgress(newProgress);
                 if(newProgress==100){
                     progressBar.setVisibility(View.GONE);
+                    Toast.makeText(MyWebActivity.this, "当前位置:"+aoiName
+                            +"("+poiName+")", Toast.LENGTH_LONG).show();
                 }else{
                     progressBar.setVisibility(View.VISIBLE);
                 }

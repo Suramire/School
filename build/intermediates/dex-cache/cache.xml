@@ -3,21 +3,12 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\edc07c9820271f6777eef10855650545eb7f576b\output\jars\classes.jar"
+        jar="D:\Transfer\Documents\AndroidProjects\School\app\libs\pinyin4j-2.5.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
-        sha1="e51c2f662bb72419632af5192553c37e33890a99">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_bd90fc54a73f1d7281ec6162fa1bb31224e7a132.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Suramire\.android\build-cache\feb8eb2e12d7c2741b4329e1c8a46cb22900665a\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.3"
-        sha1="ea6a989b83d19b1b461281e0475a6cd6514897f8">
-        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_79a4bad18a096997112c277ed07aa16dd5362345.jar" />
+        sha1="ae353005f973da1cd8545b54354504c2503f6865">
+        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\pinyin4j-2.5.0_c9c744eecfb8908309b0be23ee49b7eacbb0a3d4.jar" />
     </item>
     <item
         is-multidex="false"
@@ -30,12 +21,30 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\Suramire\.android\build-cache\edc07c9820271f6777eef10855650545eb7f576b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e51c2f662bb72419632af5192553c37e33890a99">
+        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_bd90fc54a73f1d7281ec6162fa1bb31224e7a132.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="D:\Transfer\Documents\AndroidProjects\School\app\libs\AMap.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
         sha1="255b84577f222699367fdeeb3080787423b4bd64">
         <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\AMap_9785e130428a451090c971facbce3ff5b8c7c24f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Suramire\.android\build-cache\feb8eb2e12d7c2741b4329e1c8a46cb22900665a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="ea6a989b83d19b1b461281e0475a6cd6514897f8">
+        <dex dex="D:\Transfer\Documents\AndroidProjects\School\app\build\intermediates\pre-dexed\debug\classes_79a4bad18a096997112c277ed07aa16dd5362345.jar" />
     </item>
 
 </items>

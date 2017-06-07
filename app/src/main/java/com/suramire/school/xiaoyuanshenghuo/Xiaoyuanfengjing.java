@@ -64,7 +64,7 @@ public class Xiaoyuanfengjing extends MyActivity {
                     gridView.getChildAt(i).setBackground(null);
                 }
                 gridView.getChildAt(0).setAlpha(1.0f);
-                gridView.getChildAt(0).setBackground(null);
+                gridView.getChildAt(0).setBackgroundResource(R.drawable.gallery_select);
                 gridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
