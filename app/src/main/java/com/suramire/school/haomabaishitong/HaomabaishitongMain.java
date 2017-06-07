@@ -122,13 +122,7 @@ public class HaomabaishitongMain extends MyActivity {
             Toast.makeText(HaomabaishitongMain.this, "暂无联系人数据,请先添加", Toast.LENGTH_SHORT).show();
         } else {
             //进行排序
-            for(Child c:data){
-                Log.e("before", "init: "+c.getName() );
-            }
             Collections.sort(data, new PinyinComparator());
-            for(Child c:data){
-                Log.e("after", "init: "+c.getName() );
-            }
             sideBar.setTextView(dialog);
             //设置适配器
             sortAdapter = new SortAdapter(this, data);
