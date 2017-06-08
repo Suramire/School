@@ -27,9 +27,7 @@ public class Guanjiandianchaxun extends MyWebActivity {
             @Override
             public boolean onQueryTextSubmit(final String query) {
                 new Thread(new Runnable() {
-
                     private String url2;
-
                     @Override
                     public void run() {
                         //先对要搜索的字符串进行url编码

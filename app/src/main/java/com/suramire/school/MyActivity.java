@@ -15,12 +15,7 @@ public class MyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try{
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }catch (NullPointerException e){
-            Log.e("MyActivityerror", "NullPointerException" );
-        }
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

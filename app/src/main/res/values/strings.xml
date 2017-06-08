@@ -32,8 +32,8 @@
     <string name="shenghuowanhuatong">生活万花筒</string>
     <string name="jiejiaoxinpengyou">结交新朋友</string>
     <string name="luxianguihua">路线规划</string>
-    <string name="action_upload">上传联系人</string>
-    <string name="action_download">下载联系人</string>
+    <string name="action_upload">上传本地联系人</string>
+    <string name="action_download">下载财大通联系人</string>
     <string name="menu_download">下载该联系人</string>
     <string name="menu_delete">删除该联系人</string>
     <string name="menu_phone">呼叫该联系人</string>

@@ -38,6 +38,7 @@ public class Gongjiaochaxun extends MyActivity {
                 progressBar.setProgress(newProgress);
                 if(newProgress==100){
                     progressBar.setVisibility(View.GONE);
+                    Toast.makeText(Gongjiaochaxun.this, "点击列表显示详情", Toast.LENGTH_SHORT).show();
                 }else{
                     progressBar.setVisibility(View.VISIBLE);
                 }
@@ -67,8 +68,6 @@ public class Gongjiaochaxun extends MyActivity {
                                 @Override
                                 public void run() {
                                     webview1.loadUrl("http://uri.amap.com/line?name="+split[1]+"&city="+split[0]+"&src=mypage&callnative=0");
-
-                                    Toast.makeText(Gongjiaochaxun.this, "点击列表显示详情", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }else if(split.length==1){
@@ -78,18 +77,14 @@ public class Gongjiaochaxun extends MyActivity {
                                 @Override
                                 public void run() {
                                     webview1.loadUrl("http://uri.amap.com/line?name="+split[0]+"&city=厦门市&src=mypage&callnative=0");
-                                    Toast.makeText(Gongjiaochaxun.this, "点击列表显示详情", Toast.LENGTH_LONG).show();
                                 }
                             });
-                        }else
-                            {
-
+                        }else {
                             Toast.makeText(Gongjiaochaxun.this, "输入有误,请重新输入", Toast.LENGTH_SHORT).show();
                         }
                         Looper.loop();
                     }
                 }).start();
-
                 return false;
             }
 

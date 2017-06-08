@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,7 +62,6 @@ public class HaomabaishitongMain extends MyActivity {
         BroadcastReceiver receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.e("TAG", "onReceive: " );
                 init();
             }
         };
@@ -74,6 +72,12 @@ public class HaomabaishitongMain extends MyActivity {
 
     }
 
+    /**
+     * 初始化上下文菜单
+     * @param menu
+     * @param v
+     * @param menuInfo
+     */
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.contextmenu, menu);
@@ -96,14 +100,18 @@ public class HaomabaishitongMain extends MyActivity {
                 Message msg = Message.obtain();
                 msg.what = MYHANDLER_SINGLEDOWNLOAD;
                 msg.obj = mchild;
-                myHandler.sendMessage(msg);
+                myHandler.sendMessage(msg);//发送单条删除的消息
                 break;
             case R.id.menu_delete:
-                myHandler = new MyHandler(myDataBase,new MyContentProvider(getContentResolver()),children,HaomabaishitongMain.this);
+                myHandler = new MyHandler(
+                        myDataBase,//数据库操作对象
+                        new MyContentProvider(getContentResolver()),//系统通讯录操作对象
+                        children,//当前列表
+                        HaomabaishitongMain.this);//上下文对象
                 Message message = Message.obtain();
-                message.what = MYHANDLER_SINGLEDELETE;
-                message.obj = mchild;
-                myHandler.sendMessage(message);
+                message.what = MYHANDLER_SINGLEDELETE;//将要执行单条删除操作
+                message.obj = mchild;//将要删除的联系人对象
+                myHandler.sendMessage(message);//发送删除消息,交由Handler处理
                 break;
             default:
                 break;
@@ -117,28 +125,33 @@ public class HaomabaishitongMain extends MyActivity {
      */
     private void init() {
         //获取数据
-        ArrayList<Child> data = getData();
-        if (data.size() <= 0) {
-            Toast.makeText(HaomabaishitongMain.this, "暂无联系人数据,请先添加", Toast.LENGTH_SHORT).show();
-        } else {
-            //进行排序
-            Collections.sort(data, new PinyinComparator());
-            sideBar.setTextView(dialog);
-            //设置适配器
-            sortAdapter = new SortAdapter(this, data);
-            sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
+        try{
+            ArrayList<Child> data = getData();
+            if (data.size() <= 0) {
+                Toast.makeText(HaomabaishitongMain.this, "暂无联系人数据,请先添加", Toast.LENGTH_SHORT).show();
+            } else {
+                //进行排序
+                Collections.sort(data, new PinyinComparator());
+                sideBar.setTextView(dialog);
+                //设置适配器
+                sortAdapter = new SortAdapter(this, data);
+                sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
 
-                @Override
-                public void onTouchingLetterChanged(String s) {
-                    // 该字母首次出现的位置
-                    int position = sortAdapter.getPositionForSelection(s.charAt(0));
-                    if (position != -1) {
-                        listView.setSelection(position);
+                    @Override
+                    public void onTouchingLetterChanged(String s) {
+                        // 该字母首次出现的位置
+                        int position = sortAdapter.getPositionForSelection(s.charAt(0));
+                        if (position != -1) {
+                            listView.setSelection(position);
+                        }
                     }
-                }
-            });
-            listView.setAdapter(sortAdapter);
+                });
+                listView.setAdapter(sortAdapter);
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "初始化页面失败:"+e, Toast.LENGTH_SHORT).show();
         }
+
 
 
     }
@@ -197,20 +210,24 @@ public class HaomabaishitongMain extends MyActivity {
     private ArrayList<Child> getData() {
         children = new ArrayList<>();
         //获取数据 存入list
-        Cursor cursor = myDataBase.selectAll();
-        while (cursor.moveToNext()) {
-            String name = cursor.getString(cursor.getColumnIndex("name"));
-            String number = cursor.getString(cursor.getColumnIndex("number"));
-            String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
-            String keyword = cursor.getString(cursor.getColumnIndex("keyword"));
-            String p = cursor.getString(cursor.getColumnIndex("p"));
-            if (keyword == null || keyword.length() <= 0) {
-                Child child = new Child(name, number, pinyin, p);
-                children.add(child);
-            } else {
-                Child child = new Child(name, number, keyword, pinyin, p);
-                children.add(child);
+        try {
+            Cursor cursor = myDataBase.selectAll();
+            while (cursor.moveToNext()) {
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String number = cursor.getString(cursor.getColumnIndex("number"));
+                String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+                String keyword = cursor.getString(cursor.getColumnIndex("keyword"));
+                String p = cursor.getString(cursor.getColumnIndex("p"));
+                if (keyword == null || keyword.length() <= 0) {
+                    Child child = new Child(name, number, pinyin, p);
+                    children.add(child);
+                } else {
+                    Child child = new Child(name, number, keyword, pinyin, p);
+                    children.add(child);
+                }
             }
+        } catch (Exception e) {
+            Toast.makeText(this, "获取联系人数据异常"+e, Toast.LENGTH_SHORT).show();
         }
         return children;
     }
@@ -223,21 +240,25 @@ public class HaomabaishitongMain extends MyActivity {
      */
     private ArrayList<Child> getDataBy(String something) {
         children = new ArrayList<>();
-        //获取数据 存入list
-        Cursor cursor = myDataBase.selectByAnything(something);
-        while (cursor.moveToNext()) {
-            String name = cursor.getString(cursor.getColumnIndex("name"));
-            String number = cursor.getString(cursor.getColumnIndex("number"));
-            String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
-            String keyword = cursor.getString(cursor.getColumnIndex("keyword"));
-            String p = cursor.getString(cursor.getColumnIndex("p"));
-            if (keyword == null || keyword.length() <= 0) {
-                Child child = new Child(name, number, pinyin, p);
-                children.add(child);
-            } else {
-                Child child = new Child(name, number, keyword, pinyin, p);
-                children.add(child);
+        try {
+            //获取数据 存入list
+            Cursor cursor = myDataBase.selectByAnything(something);
+            while (cursor.moveToNext()) {
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String number = cursor.getString(cursor.getColumnIndex("number"));
+                String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+                String keyword = cursor.getString(cursor.getColumnIndex("keyword"));
+                String p = cursor.getString(cursor.getColumnIndex("p"));
+                if (keyword == null || keyword.length() <= 0) {
+                    Child child = new Child(name, number, pinyin, p);
+                    children.add(child);
+                } else {
+                    Child child = new Child(name, number, keyword, pinyin, p);
+                    children.add(child);
+                }
             }
+        } catch (Exception e) {
+            Toast.makeText(this, "获取联系人数据异常"+e, Toast.LENGTH_SHORT).show();
         }
         return children;
     }

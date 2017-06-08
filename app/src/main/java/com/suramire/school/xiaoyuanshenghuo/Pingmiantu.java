@@ -28,7 +28,6 @@ public class Pingmiantu extends MyActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 imageView.setImageResource(images[i]);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 

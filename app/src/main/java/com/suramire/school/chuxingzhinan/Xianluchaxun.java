@@ -64,19 +64,14 @@ public class Xianluchaxun extends MyWebActivity {
                             });
 
                         } catch (UnsupportedEncodingException e) {
-                            Log.e("onQueryTextSubmit", "UnsupportedEncodingException");
-                            e.printStackTrace();
+                            Toast.makeText(Xianluchaxun.this, "捕获异常"+e, Toast.LENGTH_SHORT).show();
                         } catch (IOException e) {
-                            Log.e("onQueryTextSubmit", "IOException");
-                            e.printStackTrace();
-                        } catch (JSONException e) {
+                            Toast.makeText(Xianluchaxun.this, "捕获异常"+e, Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
                             //使用此方法来在线程中toast 2017-5-24 16:22:14
                             Looper.prepare();
                             Toast.makeText(Xianluchaxun.this, "请输入正确的关键字", Toast.LENGTH_SHORT).show();
                             Looper.loop();
-
-                            Log.e("onQueryTextSubmit", "JSONException");
-
                             e.printStackTrace();
                         };
                     }
