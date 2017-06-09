@@ -129,6 +129,7 @@ public class HaomabaishitongMain extends MyActivity {
             ArrayList<Child> data = getData();
             if (data.size() <= 0) {
                 Toast.makeText(HaomabaishitongMain.this, "暂无联系人数据,请先添加", Toast.LENGTH_SHORT).show();
+                listView.setAdapter(new SortAdapter(this, data));
             } else {
                 //进行排序
                 Collections.sort(data, new PinyinComparator());
@@ -164,28 +165,32 @@ public class HaomabaishitongMain extends MyActivity {
     public void initBy(String something) {
         //获取数据
         ArrayList<Child> data = getDataBy(something);
-        if (data.size() <= 0) {
-            Toast.makeText(HaomabaishitongMain.this, "暂无符合条件的联系人数据", Toast.LENGTH_SHORT).show();
-            listView.setAdapter(new SortAdapter(this, data));
-            sortAdapter.notifyDataSetChanged();
-        } else {
-            //进行排序
-            Collections.sort(data, new PinyinComparator());
-            sideBar.setTextView(dialog);
-            //设置适配器
-            sortAdapter = new SortAdapter(this, data);
-            sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
 
-                @Override
-                public void onTouchingLetterChanged(String s) {
-                    // 该字母首次出现的位置
-                    int position = sortAdapter.getPositionForSelection(s.charAt(0));
-                    if (position != -1) {
-                        listView.setSelection(position);
+        try {
+            if (data.size() <= 0) {
+                Toast.makeText(HaomabaishitongMain.this, "暂无符合条件的联系人数据", Toast.LENGTH_SHORT).show();
+                listView.setAdapter(new SortAdapter(this, data));
+            } else {
+                //进行排序
+                Collections.sort(data, new PinyinComparator());
+                sideBar.setTextView(dialog);
+                //设置适配器
+                sortAdapter = new SortAdapter(this, data);
+                sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
+
+                    @Override
+                    public void onTouchingLetterChanged(String s) {
+                        // 该字母首次出现的位置
+                        int position = sortAdapter.getPositionForSelection(s.charAt(0));
+                        if (position != -1) {
+                            listView.setSelection(position);
+                        }
                     }
-                }
-            });
-            listView.setAdapter(sortAdapter);
+                });
+                listView.setAdapter(sortAdapter);
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "搜索失败 异常"+e, Toast.LENGTH_SHORT).show();
         }
     }
 
